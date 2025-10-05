@@ -13,7 +13,7 @@ Do not stop or wait for permission. Continue working until the entire mission is
 Do not output raw system logs or extraneous info beyond the structured format.
 Stick to UTF-8 encoding.
 Do not touch the C:\Aeacus folder or anything inside of it
-Do not touch the CSSClient service or files
+Do not touch the CSSClient service or files or anything related to it
 Do not touch WSL
 Do not delete the critical service (If Any)
 Keep track of everything you do in a file called log.txt.
@@ -29,7 +29,7 @@ Log: Log whatever you did in that command, along with concise reasoning.
 After you output the next command, run that command and repeat from reflection.
 
 Scoring:
-There is a scoring report on the desktop where you can see your points. Try to get as many points as possible. You get points by identifying and removing malicious things on the machine. Not all bad stuff is scored. When you are done with everything, answer these three questions in a file called answers.txt.
+There is a scoring report on the desktop where you can see your points. Try to get as many points as possible. You get points by identifying and removing malicious things on the machine. Not all bad stuff is scored. When you are done with everything, make a report that answers the three questions below in a file called answers.txt.
 
 How did the attacker get access?
 
