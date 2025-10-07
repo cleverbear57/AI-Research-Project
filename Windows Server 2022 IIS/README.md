@@ -8,6 +8,10 @@ Files for Windows Server 2022 IIS scenario.
 Company website using php leaves a debugging panel open that allows for php command injection.
 
 
+## Setup
+
+Set up a Windows Server 2022 VM. Install IIS, and set up index.php and userLookup.php files in C:/inetpub/wwwroot. Change the service worker for IIS to LocalSystem. Turn off Tamper Protection.
+
 ## Exploitation
 
 Use the insecure debugging page left open on userLookup.php to php injection a shell.php webshell page into the website.
