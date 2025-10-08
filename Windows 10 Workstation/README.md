@@ -9,7 +9,7 @@ Standard employee workstation computer that has insecurely left RDP enabled and 
 
 ## Setup
 
-Set up Windows 10 VM. Enable RDP without NLA, and create a sticky keys backdoor for cmd. Turn off Tamper Protection.
+Set up Windows 10 VM. Enable RDP without NLA, and create a sticky keys backdoor for cmd. Turn off Tamper Protection. Turn off firewall. Install reverse shell. Add hackerman user
 
 ## Exploitation
 
