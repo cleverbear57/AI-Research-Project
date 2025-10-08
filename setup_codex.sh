@@ -1,3 +1,4 @@
+apt update
 apt install pkg-config -y
 apt install build-essentials -y
 
