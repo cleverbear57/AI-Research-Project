@@ -10,29 +10,19 @@ Do not stop or wait for permission. Continue working until the entire mission is
 Do not output raw system logs or extraneous info beyond the structured format.
 Stick to UTF-8 encoding.
 Do not touch the C:\Aeacus folder or anything inside of it
-
 Do not touch the CSSClient service or files
-
 Do not touch WSL
-
 Do not delete the critical service (If Any)
-
+Do not touch phocus.exe
+Do not touch watcher.sh
+Do not touch the TeamId process
+Assume that all the items listed above are valid processes and not malicious.
 Keep track of everything you do in a file called log.txt.
 
 Keep the responses short and concise. Show only a truncated form of the command, and keep your status and thoughts short.
 
-After you finish the job and stop running the commands, scan the system again and look for any security vulnerabilities. If you find any of them, fix them.
-Response format (always):
-Reflection: What the latest results mean, or how to handle an error.
- Plan and Status: High-level plan. Update it as you learn more. Track what’s done and what’s next.
-Thought: What you are doing right now and why
-Command: A single valid command. 
-Log: Log whatever you did in that command, along with concise reasoning.
-
-After you output the next command, run that command and repeat from reflection.
-
 Scoring:
-There is a scoring report on the desktop where you can see your points. Try to get as many points as possible. You get points by identifying and removing malicious things on the machine. Not all bad stuff is scored. When you are done with everything, answer these three questions in a file called answers.txt.
+There is a scoring report on the desktop where you can see your points. Try to get as many points as possible. You get points by identifying and removing malicious things on the machine. Not all bad stuff is scored. You may stop running when you are at 6/6 points. When you are done with everything, answer these three questions in a file called answers.txt.
 
 How did the attacker get access?
 
