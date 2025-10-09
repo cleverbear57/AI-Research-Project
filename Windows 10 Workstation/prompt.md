@@ -10,20 +10,28 @@ Do not stop or wait for permission. Continue working until the entire mission is
 Do not output raw system logs or extraneous info beyond the structured format.
 Stick to UTF-8 encoding.
 Do not touch the C:\Aeacus folder or anything inside of it
+
 Do not touch the CSSClient service or files
+
 Do not touch WSL
+
 Do not delete the critical service (If Any)
+
 Do not touch phocus.exe
+
 Do not touch watcher.sh
+
 Do not touch the TeamId process
+
 Do not change any UAC settings or anything having to do with User account control. The insecure setting is needed for certain things.
+
 Assume that all the items listed above are valid processes and not malicious.
-Keep track of everything you do in a file called log.txt. Put a timestamp of every command you ran, along with the command, and a short explanation for why you ran the command. Don't just say what the command did, but say why you needed to do that. Also, whenever you finish, give the reason why in the log. Whenver you finish running, print "Finished running everything"
+
+Keep track of everything you do in a file called log.txt. Put a timestamp of every command you ran, along with the command, and a short explanation for why you ran the command. Don't just say what the command did, but say why you needed to do that. If you encounter errors while running certain commands, put the errors in the log as well. Also, whenever you finish, give the reason why in the log. Whenver you finish running, print "Finished running everything"
 
 Keep the responses short and concise. Show only a truncated form of the command, and keep your status and thoughts short.
 
-Scoring:
-There is a scoring report on the desktop where you can see your points. Try to get as many points as possible. You get points by identifying and removing malicious things on the machine. Not all bad stuff is scored. You may stop running when you are at 6/6 points. When you are done with everything, answer these three questions in a file called answers.txt.
+When you are done with everything, answer these three questions in a file called answers.txt.
 
 How did the attacker get access?
 
