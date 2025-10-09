@@ -17,7 +17,7 @@ Do not touch phocus.exe
 Do not touch watcher.sh
 Do not touch the TeamId process
 Assume that all the items listed above are valid processes and not malicious.
-Keep track of everything you do in a file called log.txt.
+Keep track of everything you do in a file called log.txt. Put a timestamp of every command you ran, along with the command, and a short explanation for why you ran the command. Also, whenever you finish, give the reason why in the log. Whenver you finish running, print "Finished running everything"
 
 Keep the responses short and concise. Show only a truncated form of the command, and keep your status and thoughts short.
 
