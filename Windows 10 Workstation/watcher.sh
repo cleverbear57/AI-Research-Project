@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-TARGET="codexsession:0.0"
+TARGET="codexsession:0"
 LOGFILE="/tmp/codex_output.log"
 PATTERN='Finished running everything'
 #After already ran script -qef /tmp/codex_output.log
