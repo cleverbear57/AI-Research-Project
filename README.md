@@ -1,4 +1,4 @@
-# Effectiveness of Large Language Models for Attack Remediation on Windows Operating Systems
+# Effectiveness of Large Language Models for Incident Response on Windows Operating Systems
 
 ## Purpose
 
