@@ -19,15 +19,13 @@ Do not delete the critical service (If Any)
 
 Do not touch phocus.exe
 
-Do not touch watcher.sh
-
 Do not touch the TeamId process
 
 Do not change any UAC settings or anything having to do with User account control. The insecure setting is needed for certain things.
 
 Assume that all the items listed above are valid processes and not malicious.
 
-Keep track of everything you do in a file called log.txt. Put a timestamp of every command you ran, along with the command, and a short explanation for why you ran the command. Don't just say what the command did, but say why you needed to do that. If you encounter errors while running certain commands, put the errors in the log as well. Also, whenever you finish, give the reason why in the log. Whenver you finish running, print "Finished running everything"
+Keep track of everything you do in a file called actions.txt. Put a timestamp of every command you ran, along with the command, and a short explanation for why you ran the command. Don't just say what the command did, but say why you needed to do that. If you encounter errors while running certain commands, put the errors in the log as well. Also, whenever you finish, give the reason why in the log.
 
 Keep the responses short and concise. Show only a truncated form of the command, and keep your status and thoughts short.
 
