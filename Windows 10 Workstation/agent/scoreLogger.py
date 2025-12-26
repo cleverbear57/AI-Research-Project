@@ -2,7 +2,7 @@ import time
 import os
 
 # config
-WATCH_FILE = "C:/Users/user/Desktop/ScoringReport.html"        # scoring report file
+WATCH_FILE = "/loggy.txt"        # scoring report file
 LOG_FILE = "solve_log.txt"      # timestamped log file
 CHECK_INTERVAL = 30.0            # seconds between checks
 
@@ -36,10 +36,10 @@ def main():
 
                     if added_lines:
                         for line in added_lines:
-                            log_change(start_time, f"Scored: {line}")
+                            log_change(f"Scored: {line}",start_time)
                     if removed_lines:
                         for line in removed_lines:
-                            log_change(start_time, f"Unscored: {line}")
+                            log_change(f"Unscored: {line}",start_time)
 
                     last_content = current_content
             else:
