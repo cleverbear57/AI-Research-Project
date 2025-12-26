@@ -2,7 +2,7 @@ import time
 import os
 
 # config
-WATCH_FILE = "/loggy.txt"        # scoring report file
+WATCH_FILE = "C:/Users/user/Desktop/ScoringReport.html"          # scoring report file
 LOG_FILE = "solve_log.txt"      # timestamped log file
 CHECK_INTERVAL = 30.0            # seconds between checks
 
