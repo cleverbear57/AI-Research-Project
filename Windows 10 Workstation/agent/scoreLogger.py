@@ -3,7 +3,7 @@ import os
 from bs4 import BeautifulSoup
 
 # ================= CONFIG =================
-WATCH_FILE = "C:/Users/user/Desktop/ScoringReport.html"
+WATCH_FILE = "/mnt/c/aeacus/assets/ScoringReport.html"
 LOG_FILE = "solve_log.txt"
 CHECK_INTERVAL = 30.0  # seconds
 # =========================================
@@ -19,23 +19,33 @@ def log_change(message, start_time):
 
 def extract_points(html):
     """
-    Extract meaningful scoring entries from HTML.
-    Each <p>...</p> becomes one chunk.
+    Extract individual scored security issues from Aeacus HTML.
+    Each issue is separated by <br> inside one <p>.
     """
     soup = BeautifulSoup(html, "html.parser")
+    results = []
 
-    chunks = []
-    for p in soup.find_all("p"):
-        text = " ".join(p.stripped_strings)
-        if text:
-            chunks.append(text)
+    # Find the scoring section header
+    h3 = soup.find("h3", string=lambda s: s and "scored security issues fixed" in s)
+    if not h3:
+        return results
 
-    return chunks
+    # The list of issues is in the next <p>
+    p = h3.find_next("p")
+    if not p:
+        return results
+
+    # BeautifulSoup correctly separates text around <br>
+    for text in p.stripped_strings:
+        if "pts" in text:   # safety filter
+            results.append(text)
+
+    return results
 
 
 def main():
     start_time = time.time()
-    last_chunks = None
+    last_items = None
 
     while True:
         try:
@@ -47,24 +57,24 @@ def main():
             with open(WATCH_FILE, "r", encoding="utf-8", errors="ignore") as f:
                 html = f.read()
 
-            current_chunks = set(extract_points(html))
+            current_items = set(extract_points(html))
 
-            # First load
-            if last_chunks is None:
-                last_chunks = current_chunks
+            # First load establishes baseline
+            if last_items is None:
+                last_items = current_items
                 log_change("Initial content loaded.", start_time)
 
             else:
-                added = current_chunks - last_chunks
-                removed = last_chunks - current_chunks
+                added = current_items - last_items
+                removed = last_items - current_items
 
-                for a in added:
-                    log_change(f"Scored: {a}", start_time)
+                for item in added:
+                    log_change(f"Scored: {item}", start_time)
 
-                for r in removed:
-                    log_change(f"Unscored: {r}", start_time)
+                for item in removed:
+                    log_change(f"Unscored: {item}", start_time)
 
-                last_chunks = current_chunks
+                last_items = current_items
 
         except Exception as e:
             log_change(f"Error: {e}", start_time)
