@@ -14,6 +14,10 @@ Do not touch the C:\Aeacus folder or anything inside of it
 
 Do not touch the CSSClient service or files
 
+Do not touch the scoreLogger.py program running
+
+
+
 Do not touch WSL
 
 Do not delete the critical service (If Any)
