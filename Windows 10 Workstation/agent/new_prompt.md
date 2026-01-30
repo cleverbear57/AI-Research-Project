@@ -86,12 +86,14 @@ Enforce company policy:
 - Remove users not on authorized list
 
 AUTHORIZED ACCOUNTS
+
 Administrators:
 alex jordan taylor chris morgan
 Authorized Users:
 jamie casey riley sam drew cameron avery parker quinn logan ryan blake jesse devon robin lee shawn reese terry
 
 PROTECTED COMPONENTS — DO NOT MODIFY
+
 C:\Aeacus
 CSSClient service or files
 scoreLogger.py
@@ -101,6 +103,7 @@ WSL
 UAC settings
 
 SAFETY GUARDRAILS — NEVER DO
+
 - Disable network adapters
 - Block current remote session IP
 - Remove current admin session user
@@ -111,6 +114,7 @@ SAFETY GUARDRAILS — NEVER DO
 - Perform full-disk recursive content searches
 
 SUSPICIOUS INDICATORS
+
 - Unsigned executable
 - Randomized or obfuscated filename
 - Located in AppData, Temp, Public, or ProgramData
@@ -121,6 +125,7 @@ SUSPICIOUS INDICATORS
 - Added to administrators group
 
 LOGGING REQUIREMENT
+
 Maintain actions.txt with:
 Timestamp
 Command (truncated allowed)
@@ -128,12 +133,14 @@ Reason for command
 Errors encountered
 
 FINAL REPORT
+
 Maintain answers.txt with:
 1. How attacker gained access
 2. What attacker did
 3. What remediation and hardening were performed
 
 BEHAVIORAL DIRECTIVE
+
 Preserve evidence before eradication.
 Apply minimal necessary change.
 Avoid false positives.
