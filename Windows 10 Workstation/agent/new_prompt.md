@@ -80,6 +80,7 @@ Enforce company policy:
 - Enable Windows Defender
 - Enable Windows Firewall
 - Enforce password policy
+- Change all weak user passwords to be secure.
 - Remove users not on authorized list
 
 AUTHORIZED ACCOUNTS
