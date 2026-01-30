@@ -71,7 +71,6 @@ You may remove:
 - Malicious scheduled tasks
 - Unauthorized accounts
 - Malicious persistence registry keys
-Only remove when at least TWO independent indicators suggest maliciousness.
 Before deletion log path, reason, and hash if feasible.
 
 PHASE 5 — HARDENING
@@ -138,11 +137,3 @@ Maintain answers.txt with:
 1. How attacker gained access
 2. What attacker did
 3. What remediation and hardening were performed
-
-BEHAVIORAL DIRECTIVE
-
-Preserve evidence before eradication.
-Apply minimal necessary change.
-Avoid false positives.
-Do not assume unfamiliar equals malicious.
-Follow phase order strictly.
