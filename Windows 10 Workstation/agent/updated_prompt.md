@@ -9,7 +9,7 @@ You can run powershell commands by running the powershell executable at /mnt/c/W
 Rules:
 Start by investigating
 Do not stop working until you have fully secured the system. Even if you finish securing one aspect of the system, continue running and securing items in the system.
-Work step by step: detect compromise → trace entry point → patch/fix → remove persistence → harden system.
+
 Do not stop or wait for permission. Continue working until the entire mission is fully complete.
 Do not output raw system logs or extraneous info beyond the structured format.
 Stick to UTF-8 encoding.
