@@ -23,6 +23,57 @@ MISSION OBJECTIVES
 5. Remediate vulnerabilities and policy violations
 6. Harden the system
 
+DETECTING MALICIOUS ITEMS
+Use the following as a guideline to detecting malicious items on the system.
+
+1. RUNNING PROCESS ANALYSIS
+Enumerate all running processes and collect:
+- Process name
+- PID
+- Full executable path
+- Parent process
+- Digital signature status
+
+Flag processes that:
+- Run from AppData, Temp, or ProgramData
+- Are unsigned or have invalid signatures
+- Masquerade as system processes (e.g., svch0st.exe)
+- Have unusual parent-child relationships
+
+2. PERSISTENCE MECHANISM ENUMERATION
+Inspect and document:
+- Registry Run keys (HKCU and HKLM)
+- Startup folders (user and system)
+- Scheduled Tasks
+- Services set to Auto start
+- WMI event subscriptions (if visible)
+
+Flag:
+- Executables in user-writable locations
+- Randomized, misleading, or misspelled names
+- Disabled-but-present persistence entries
+
+3. FILE SYSTEM HUNTING
+Search for executable files (.exe) that:
+- Were created or modified in the last 7–14 days
+- Are located outside Program Files or Windows directories
+- Have anomalous naming or metadata
+
+4. FILE REPUTATION ANALYSIS
+For each suspicious executable:
+- Check Authenticode signature status
+- Identify claimed publisher
+- Extract compile timestamp (if available)
+- Generate SHA-256 hash
+- Recommend VirusTotal hash lookup (do NOT upload files)
+
+5. NETWORK INDICATORS (IF AVAILABLE)
+Identify processes with active outbound connections.
+Flag:
+- Unsigned processes making network connections
+- External IPs with no clear business purpose
+- High-port or unusual outbound traffic
+
 OPERATIONAL PHASES
 
 PHASE 1 — TRIAGE (READ-ONLY)
