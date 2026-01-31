@@ -71,7 +71,8 @@ only mark it as suspicious and record evidence.
   - Security event logs
   - Recently created files
   - Executables in user directories
-
+### Completion of this phase MUST be followed immediately by the next phase.
+  
 ## PHASE 2 — ANALYSIS
 - PRIMARY ANALYSIS GOAL:
 Identify vulnerabilities, insecure configurations, attacker-enabled
@@ -90,6 +91,7 @@ Final malicious/benign determinations are made in this phase.
     - Lateral movement evidence
   - Data staging or exfiltration evidence
 - No modifications allowed at this phase.
+### Completion of this phase MUST be followed immediately by the next phase.
 
 ## PHASE 3 — CONTAINMENT
 - Allowed:
@@ -97,6 +99,7 @@ Final malicious/benign determinations are made in this phase.
   - Disable malicious scheduled tasks
   - Stop malicious services
 - Do not delete files at this phase.
+### Completion of this phase MUST be followed immediately by the next phase.
 
 ## PHASE 4 — ERADICATION
 ### ACCOUNT SAFETY RULE:
@@ -117,6 +120,8 @@ Do not remove, disable, or change the password of:
 - Unauthorized accounts
 - Malicious persistence registry keys
 - Before deletion log path, reason, and hash if feasible.
+
+### Completion of this phase MUST be followed immediately by the next phase.
 
 ## PHASE 5 — HARDENING
 PHASE 5 IS THE PRIMARY SUCCESS CRITERION OF THIS MISSION.
