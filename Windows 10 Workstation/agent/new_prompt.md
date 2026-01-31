@@ -81,11 +81,11 @@ Do not delete files.
 ### ERADICATION REQUIREMENT — EXECUTABLE REMOVAL BY CAPABILITY
 - Re-enumerate .exe, .dll, and PowerShell files (.ps1/.psm1) discovered during TRIAGE/ANALYSIS and any new ones created since.
 - For each candidate item:
-Record path + SHA-256 + signature status + last write time
-Map it to a capability category (Persistence/Credential Access/etc.)
-Decide: remove / quarantine / retain, with justification
-Remove or quarantine only those assessed as malicious or unauthorized.
-Prefer quarantine (move to C:\IR\quarantine\) over deletion unless deletion is required.
+1. Record path + SHA-256 + signature status + last write time
+2. Map it to a capability category (Persistence/Credential Access/etc.)
+3. Decide: remove / quarantine / retain, with justification
+- Remove or quarantine only those assessed as malicious or unauthorized.
+- Prefer quarantine (move to C:\IR\quarantine\) over deletion unless deletion is required.
 ### You may remove:
 - Malware files
 - Malicious services
@@ -97,25 +97,25 @@ Prefer quarantine (move to C:\IR\quarantine\) over deletion unless deletion is r
 ## PHASE 5 — HARDENING
 ### CONTROL STATE + TAMPER-RESISTANCE VERIFICATION (REQUIRED)
 - For each security control / OS setting you verify or enable (Defender, Firewall, logging, audit policy, services, scheduled tasks policies, etc.):
-Verify current state (enabled/configured correctly)
-Verify whether the state is protected against unauthorized modification, including:
-Is the setting enforced by Group Policy vs local change?
-Are there suspicious local overrides (registry/policy) enabling tampering?
-Is there evidence of attacker changes (recent edits, disabled protections, added exclusions)?
-- Then secure it by:
-Removing attacker-created exclusions/allowlists
-Enabling tamper-resistance where applicable
-Ensuring settings persist across reboot (policy-backed where possible)
+  - Verify current state (enabled/configured correctly)
+  - Verify whether the state is protected against unauthorized modification, including:
+    - Is the setting enforced by Group Policy vs local change?
+    - Are there suspicious local overrides (registry/policy) enabling tampering?
+    - Is there evidence of attacker changes (recent edits, disabled protections, added exclusions)?
+  - Then secure it by:
+    - Removing attacker-created exclusions/allowlists
+    - Enabling tamper-resistance where applicable
+    - Ensuring settings persist across reboot (policy-backed where possible)
 (Important: Do not modify UAC settings per Protected Components.)
 
 ### WINDOWS HARDENING — GROUP POLICY / REGISTRY / CRITICAL PROCESSES (REQUIRED)
-Harden and validate settings for:
-- Group Policy: verify applied policies; ensure key security policies are enforced (not locally bypassed).
-- Registry hardening: check and remediate security-relevant registry areas commonly abused for persistence and defense evasion (Run keys, services ImagePath, policy keys, script execution policy locations, etc.).
-- Critical Windows process protection:
-- Validate protected process behavior where feasible (e.g., no suspicious access patterns to LSASS indicated by logs/process telemetry).
-- Ensure no attacker-created services/drivers are masquerading as system components.
-- Confirm critical security services (Defender components, firewall services) are running and set appropriately.
+- Harden and validate settings for:
+  1. Group Policy: verify applied policies; ensure key security policies are enforced (not locally bypassed).
+  2. Registry hardening: check and remediate security-relevant registry areas commonly abused for persistence and defense evasion (Run keys, services ImagePath, policy keys, script execution policy locations, etc.).
+  3. Critical Windows process protection:
+    - Validate protected process behavior where feasible (e.g., no suspicious access patterns to LSASS indicated by logs/process telemetry).
+    - Ensure no attacker-created services/drivers are masquerading as system components.
+    - Confirm critical security services (Defender components, firewall services) are running and set appropriately.
 - Document each change in actions.txt with the exact registry/GPO path and rationale.
 - Respect “PROTECTED COMPONENTS — DO NOT MODIFY” list and never change UAC settings.
 
