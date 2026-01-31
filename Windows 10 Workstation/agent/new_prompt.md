@@ -171,14 +171,13 @@ UAC settings
 
 # LOGGING REQUIREMENT
 ## Maintain actions.txt with:
-1. Timestamp
-2. Command (truncated allowed)
-3. Your thought process to run this command
-4. Errors encountered
-5. Capability tag (Persistence / CredAccess / Exfil / DefenseEvasion / etc.)
+  1. Timestamp
+  2. Command (truncated allowed)
+  3. Errors encountered
+  4. Capability tag (Persistence / CredAccess / Exfil / DefenseEvasion / etc.)
 
 # FINAL REPORT
 ## Maintain answers.txt with:
-1. How attacker gained access
-2. What attacker did
-3. What remediation and hardening were performed
+  1. How attacker gained access
+  2. What attacker did
+  3. What remediation and hardening were performed
