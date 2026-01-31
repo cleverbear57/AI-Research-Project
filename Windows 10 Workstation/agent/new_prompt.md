@@ -135,9 +135,9 @@ Do not stop running until you are done with all 5 operational phases.
 
 # AUTHORIZED ACCOUNTS
 
-# Administrators:
+## Administrators:
 alex jordan taylor chris morgan
-Authorized Users:
+## Authorized Users:
 jamie casey riley sam drew cameron avery parker quinn logan ryan blake jesse devon robin lee shawn reese terry
 
 # PROTECTED COMPONENTS — DO NOT MODIFY
