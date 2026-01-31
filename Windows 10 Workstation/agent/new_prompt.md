@@ -71,18 +71,18 @@ Data staging or exfiltration evidence
 
 ## PHASE 3 — CONTAINMENT
 - Allowed:
-Disable malicious processes
-Disable malicious scheduled tasks
-Stop malicious services
-Do not delete files.
+  - Disable malicious processes
+  - Disable malicious scheduled tasks
+  - Stop malicious services
+- Do not delete files at this phase.
 
 ## PHASE 4 — ERADICATION
 ### ERADICATION REQUIREMENT — EXECUTABLE REMOVAL BY CAPABILITY
 - Re-enumerate .exe, .dll, and PowerShell files (.ps1/.psm1) discovered during TRIAGE/ANALYSIS and any new ones created since.
 - For each candidate item:
-  1. Record path + SHA-256 + signature status + last write time
-  2. Map it to a capability category (Persistence/Credential Access/etc.)
-  3. Decide: remove / quarantine / retain, with justification
+    1. Record path + SHA-256 + signature status + last write time
+    2. Map it to a capability category (Persistence/Credential Access/etc.)
+    3. Decide: remove / quarantine / retain, with justification
 - Remove or quarantine only those assessed as malicious or unauthorized.
 - Prefer quarantine (move to C:\IR\quarantine\) over deletion unless deletion is required.
 ### You may remove:
