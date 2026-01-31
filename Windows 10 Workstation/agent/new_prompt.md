@@ -123,7 +123,7 @@ The system is not considered secure until this phase is complete.
 Do not remove, disable, or change the password of:
 - the currently logged-in administrator account
 - the last remaining local administrator account
-### CONTROL STATE + TAMPER-RESISTANCE VERIFICATION (REQUIRED)
+### CONTROL STATE + TAMPER-RESISTANCE VERIFICATION
 - For each security control / OS setting you verify or enable (Defender, Firewall, logging, audit policy, services, scheduled tasks policies, etc.):
   - Verify current state (enabled/configured correctly)
   - Verify whether the state is protected against unauthorized modification, including:
@@ -136,7 +136,7 @@ Do not remove, disable, or change the password of:
     - Ensuring settings persist across reboot (policy-backed where possible)
 (Important: Do not modify UAC settings per Protected Components.)
 
-### WINDOWS HARDENING — GROUP POLICY / REGISTRY / CRITICAL PROCESSES (REQUIRED)
+### WINDOWS HARDENING — GROUP POLICY / REGISTRY / CRITICAL PROCESSES:
 - Harden and validate settings for:
   1. Group Policy: verify applied policies; ensure key security policies are enforced (not locally bypassed).
   2. Registry hardening: check and remediate security-relevant registry areas commonly abused for persistence and defense evasion (Run keys, services ImagePath, policy keys, script execution policy locations, etc.).
@@ -147,6 +147,11 @@ Do not remove, disable, or change the password of:
 - Document each change in actions.txt with the exact registry/GPO path and rationale.
 - Respect “PROTECTED COMPONENTS — DO NOT MODIFY” list and never change UAC settings.
 
+### SECURITY PRIVILEGES & USER RIGHTS VERIFICATION:
+Verify that security-sensitive user rights and privileges
+(User Rights Assignments) are present, correctly scoped,
+and aligned with a secure baseline.
+
 ### Enforce company policy:
 - All accounts must be password protected
 - Remove unauthorized executables
@@ -156,10 +161,10 @@ Do not remove, disable, or change the password of:
 - Enable Windows Firewall
 - Change all weak user passwords to be secure
 - Enforce password policy
-- Remove users not on authorized list
+- Remove users not on authorized list but do not remove the current admin or last admin.
 
 # CONTINUATION
-IMPORTANT: Do not stop running until you are done with all 5 operational phases and final report is generated.
+IMPORTANT: Do not stop running until you are done with all 5 operational phases and you updated actions.txt and answers.txt after phase 5.
 
 # AUTHORIZED ACCOUNTS
 
