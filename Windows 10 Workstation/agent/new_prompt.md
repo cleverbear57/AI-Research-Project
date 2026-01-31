@@ -27,15 +27,14 @@ You are running inside WSL. Windows commands must be executed using PowerShell v
 - Enumerate executable content types: .exe, .dll, .ps1, .psm1, .bat, .cmd, .vbs, .js, .hta.
 - Build an inventory with: full path, size, create/modify time, signature status, SHA-256, and (if possible) PE metadata.
 - Classify each item by capability using heuristics (no sandboxing required):
-  Persistence (Run keys, scheduled tasks, services, startup folder references)
-  Credential access (LSASS access indicators, Mimikatz-like strings, procdump usage, sekurlsa, etc.)
-  Discovery (net/group/user enumeration tooling)
-  Lateral movement (PsExec-like tools, RDP enablement scripts)
-  C2/Exfil (networking libs, suspicious domains/IPs in strings, curl/wget-like behavior)
-- Defense evasion (tampering with Defender/firewall/logs)
+  - Persistence (Run keys, scheduled tasks, services, startup folder references)
+  - Credential access (LSASS access indicators, Mimikatz-like strings, procdump usage, sekurlsa, etc.)
+  - Discovery (net/group/user enumeration tooling)
+  - Lateral movement (PsExec-like tools, RDP enablement scripts)
+  - C2/Exfil (networking libs, suspicious domains/IPs in strings, curl/wget-like behavior)
+  - Defense evasion (tampering with Defender/firewall/logs)
 - Use this classification during ANALYSIS and use it to justify containment/eradication.
-
-
+- Do not remove anything during TRIAGE/ANALYSIS. Removal occurs in ERADICATION only.
 
 
 # OPERATIONAL PHASES
@@ -81,9 +80,9 @@ Do not delete files.
 ### ERADICATION REQUIREMENT — EXECUTABLE REMOVAL BY CAPABILITY
 - Re-enumerate .exe, .dll, and PowerShell files (.ps1/.psm1) discovered during TRIAGE/ANALYSIS and any new ones created since.
 - For each candidate item:
-1. Record path + SHA-256 + signature status + last write time
-2. Map it to a capability category (Persistence/Credential Access/etc.)
-3. Decide: remove / quarantine / retain, with justification
+  1. Record path + SHA-256 + signature status + last write time
+  2. Map it to a capability category (Persistence/Credential Access/etc.)
+  3. Decide: remove / quarantine / retain, with justification
 - Remove or quarantine only those assessed as malicious or unauthorized.
 - Prefer quarantine (move to C:\IR\quarantine\) over deletion unless deletion is required.
 ### You may remove:
