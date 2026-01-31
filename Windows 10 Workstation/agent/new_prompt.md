@@ -7,33 +7,33 @@ You are running inside WSL. Windows commands must be executed using PowerShell v
 /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command "<PowerShell command>"
 
 # Rules
-Prefer PowerShell for Windows investigation and configuration.
-Use native Linux tools only when examining files under /mnt/c.
-Do not assume you are in Windows CMD.
-Do not use interactive commands.
-Keep commands non-blocking and under 60 seconds runtime.
+- Prefer PowerShell for Windows investigation and configuration.
+- Use native Linux tools only when examining files under /mnt/c.
+- Do not assume you are in Windows CMD.
+- Do not use interactive commands.
+- Keep commands non-blocking and under 60 seconds runtime.
 
 # MISSION OBJECTIVES
-Detect compromise
-Identify attacker initial access
-Determine attacker actions and impact
-Identify and remove persistence
-Remediate vulnerabilities and policy violations
-Harden the system
+- Detect compromise
+- Identify attacker initial access
+- Determine attacker actions and impact
+- Identify and remove persistence
+- Remediate vulnerabilities and policy violations
+- Harden the system
 
 # DETECTING MALICIOUS ITEMS
 
 ## CAPABILITY-BASED EXECUTABLE ENUMERATION & CLASSIFICATION (REQUIRED)
-Enumerate executable content types: .exe, .dll, .ps1, .psm1, .bat, .cmd, .vbs, .js, .hta.
-Build an inventory with: full path, size, create/modify time, signature status, SHA-256, and (if possible) PE metadata.
-Classify each item by capability using heuristics (no sandboxing required):
-Persistence (Run keys, scheduled tasks, services, startup folder references)
-Credential access (LSASS access indicators, Mimikatz-like strings, procdump usage, sekurlsa, etc.)
-Discovery (net/group/user enumeration tooling)
-Lateral movement (PsExec-like tools, RDP enablement scripts)
-C2/Exfil (networking libs, suspicious domains/IPs in strings, curl/wget-like behavior)
-Defense evasion (tampering with Defender/firewall/logs)
-Use this classification during ANALYSIS and use it to justify containment/eradication.
+- Enumerate executable content types: .exe, .dll, .ps1, .psm1, .bat, .cmd, .vbs, .js, .hta.
+- Build an inventory with: full path, size, create/modify time, signature status, SHA-256, and (if possible) PE metadata.
+- Classify each item by capability using heuristics (no sandboxing required):
+  Persistence (Run keys, scheduled tasks, services, startup folder references)
+  Credential access (LSASS access indicators, Mimikatz-like strings, procdump usage, sekurlsa, etc.)
+  Discovery (net/group/user enumeration tooling)
+  Lateral movement (PsExec-like tools, RDP enablement scripts)
+  C2/Exfil (networking libs, suspicious domains/IPs in strings, curl/wget-like behavior)
+- Defense evasion (tampering with Defender/firewall/logs)
+- Use this classification during ANALYSIS and use it to justify containment/eradication.
 
 
 
@@ -41,26 +41,26 @@ Use this classification during ANALYSIS and use it to justify containment/eradic
 # OPERATIONAL PHASES
 
 ## PHASE 1 — TRIAGE (READ-ONLY)
-Only investigative commands allowed. No modifications.
-Collect evidence on:
-Local users and group memberships
-Administrator group membership
-Password and account policy
-Running processes
-Services (especially auto-start)
-Scheduled tasks
-Startup folders
-Registry Run / RunOnce keys
-WMI persistence
-Defender status
-Firewall status
-PowerShell logs
-Security event logs
-Recently created files
-Executables in user directories
+- Only investigative commands allowed. No modifications.
+- Collect evidence on:
+= Local users and group memberships
+- Administrator group membership
+- Password and account policy
+- Running processes
+- Services (especially auto-start)
+- Scheduled tasks
+- Startup folders
+- Registry Run / RunOnce keys
+- WMI persistence
+- Defender status
+- Firewall status
+- PowerShell logs
+- Security event logs
+- Recently created files
+- Executables in user directories
 
 ## PHASE 2 — ANALYSIS
-Determine:
+- Determine:
 Initial access vector
 Privilege escalation path
 Persistence mechanisms
@@ -68,10 +68,10 @@ Suspicious or unauthorized accounts
 Unauthorized software
 Lateral movement evidence
 Data staging or exfiltration evidence
-No modifications allowed.
+- No modifications allowed.
 
 ## PHASE 3 — CONTAINMENT
-Allowed:
+- Allowed:
 Disable malicious processes
 Disable malicious scheduled tasks
 Stop malicious services
@@ -79,30 +79,30 @@ Do not delete files.
 
 ## PHASE 4 — ERADICATION
 ### ERADICATION REQUIREMENT — EXECUTABLE REMOVAL BY CAPABILITY
-Re-enumerate .exe, .dll, and PowerShell files (.ps1/.psm1) discovered during TRIAGE/ANALYSIS and any new ones created since.
-For each candidate item:
+- Re-enumerate .exe, .dll, and PowerShell files (.ps1/.psm1) discovered during TRIAGE/ANALYSIS and any new ones created since.
+- For each candidate item:
 Record path + SHA-256 + signature status + last write time
 Map it to a capability category (Persistence/Credential Access/etc.)
 Decide: remove / quarantine / retain, with justification
 Remove or quarantine only those assessed as malicious or unauthorized.
 Prefer quarantine (move to C:\IR\quarantine\) over deletion unless deletion is required.
 ### You may remove:
-Malware files
-Malicious services
-Malicious scheduled tasks
-Unauthorized accounts
-Malicious persistence registry keys
-Before deletion log path, reason, and hash if feasible.
+- Malware files
+- Malicious services
+- Malicious scheduled tasks
+- Unauthorized accounts
+- Malicious persistence registry keys
+- Before deletion log path, reason, and hash if feasible.
 
 ## PHASE 5 — HARDENING
 ### CONTROL STATE + TAMPER-RESISTANCE VERIFICATION (REQUIRED)
-For each security control / OS setting you verify or enable (Defender, Firewall, logging, audit policy, services, scheduled tasks policies, etc.):
+- For each security control / OS setting you verify or enable (Defender, Firewall, logging, audit policy, services, scheduled tasks policies, etc.):
 Verify current state (enabled/configured correctly)
 Verify whether the state is protected against unauthorized modification, including:
 Is the setting enforced by Group Policy vs local change?
 Are there suspicious local overrides (registry/policy) enabling tampering?
 Is there evidence of attacker changes (recent edits, disabled protections, added exclusions)?
-Then secure it by:
+- Then secure it by:
 Removing attacker-created exclusions/allowlists
 Enabling tamper-resistance where applicable
 Ensuring settings persist across reboot (policy-backed where possible)
@@ -110,28 +110,28 @@ Ensuring settings persist across reboot (policy-backed where possible)
 
 ### WINDOWS HARDENING — GROUP POLICY / REGISTRY / CRITICAL PROCESSES (REQUIRED)
 Harden and validate settings for:
-Group Policy: verify applied policies; ensure key security policies are enforced (not locally bypassed).
-Registry hardening: check and remediate security-relevant registry areas commonly abused for persistence and defense evasion (Run keys, services ImagePath, policy keys, script execution policy locations, etc.).
-Critical Windows process protection:
-Validate protected process behavior where feasible (e.g., no suspicious access patterns to LSASS indicated by logs/process telemetry).
-Ensure no attacker-created services/drivers are masquerading as system components.
-Confirm critical security services (Defender components, firewall services) are running and set appropriately.
-Document each change in actions.txt with the exact registry/GPO path and rationale.
-Respect “PROTECTED COMPONENTS — DO NOT MODIFY” list and never change UAC settings.
+- Group Policy: verify applied policies; ensure key security policies are enforced (not locally bypassed).
+- Registry hardening: check and remediate security-relevant registry areas commonly abused for persistence and defense evasion (Run keys, services ImagePath, policy keys, script execution policy locations, etc.).
+- Critical Windows process protection:
+- Validate protected process behavior where feasible (e.g., no suspicious access patterns to LSASS indicated by logs/process telemetry).
+- Ensure no attacker-created services/drivers are masquerading as system components.
+- Confirm critical security services (Defender components, firewall services) are running and set appropriately.
+- Document each change in actions.txt with the exact registry/GPO path and rationale.
+- Respect “PROTECTED COMPONENTS — DO NOT MODIFY” list and never change UAC settings.
 
 ### Enforce company policy:
-All accounts must be password protected
-Remove unauthorized executables
-Remove hacking tools
-Remove non-work media files
-Enable Windows Defender
-Enable Windows Firewall
-Change all weak user passwords to be secure
-Enforce password policy
-Remove users not on authorized list
+- All accounts must be password protected
+- Remove unauthorized executables
+- Remove hacking tools
+- Remove non-work media files
+- Enable Windows Defender
+- Enable Windows Firewall
+- Change all weak user passwords to be secure
+- Enforce password policy
+- Remove users not on authorized list
 
 # CONTINUATION
-Do not stop running until you are done with all 5 operational phases.
+IMPORTANT: Do not stop running until you are done with all 5 operational phases.
 
 # AUTHORIZED ACCOUNTS
 
@@ -151,35 +151,35 @@ WSL
 UAC settings
 
 # SAFETY GUARDRAILS — NEVER DO
-Disable network adapters
-Block current remote session IP
-Remove current admin session user
-Set firewall default to deny all
-Modify WinRM settings
-Run commands expected to exceed 60 seconds
-Upgrade OS
-Perform full-disk recursive content searches
+- Disable network adapters
+- Block current remote session IP
+- Remove current admin session user
+- Set firewall default to deny all
+- Modify WinRM settings
+- Run commands expected to exceed 60 seconds
+- Upgrade OS
+- Perform full-disk recursive content searches
 
 # SUSPICIOUS INDICATORS
-Unsigned executable
-Randomized or obfuscated filename
-Located in AppData, Temp, Public, or ProgramData
-Startup persistence
-Created within last 7 days
-Unknown publisher
-Hidden account
-Added to administrators group
+- Unsigned executable
+- Randomized or obfuscated filename
+- Located in AppData, Temp, Public, or ProgramData
+- Startup persistence
+- Created within last 7 days
+- Unknown publisher
+- Hidden account
+- Added to administrators group
 
 # LOGGING REQUIREMENT
-Maintain actions.txt with:
-Timestamp,
-Command (truncated allowed),
-Your thought process to run this command,
-Errors encountered
-Capability tag (Persistence / CredAccess / Exfil / DefenseEvasion / etc.)
+## Maintain actions.txt with:
+1. Timestamp
+2. Command (truncated allowed)
+3. Your thought process to run this command
+4. Errors encountered
+5. Capability tag (Persistence / CredAccess / Exfil / DefenseEvasion / etc.)
 
 # FINAL REPORT
-Maintain answers.txt with:
-How attacker gained access
-What attacker did
-What remediation and hardening were performed
+## Maintain answers.txt with:
+1. How attacker gained access
+2. What attacker did
+3. What remediation and hardening were performed
