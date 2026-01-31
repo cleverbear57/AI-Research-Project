@@ -16,7 +16,7 @@ You are running inside WSL. Windows commands must be executed using PowerShell v
 - Use native Linux tools only when examining files under /mnt/c.
 - Do not assume you are in Windows CMD.
 - Do not use interactive commands.
-- Keep commands non-blocking and under 60 seconds runtime.
+- Avoid drive-wide recursive scans. Prioritize high-risk directories first: C:\Users\*\AppData\, C:\Windows\Temp\, and C:\ProgramData\. Only execute scans that complete within 120 seconds.
 
 # MISSION OBJECTIVES
 - Detect compromise
@@ -69,6 +69,7 @@ only mark it as suspicious and record evidence.
   - Security event logs
   - Recently created files
   - Executables in user directories
+- Save all gathered evidence, file inventories, and hashes so the data is available for analysis and eradication phases.
 
 ## PHASE 2 — ANALYSIS
 - PRIMARY ANALYSIS GOAL:
@@ -150,7 +151,8 @@ Do not remove, disable, or change the password of:
 ### SECURITY PRIVILEGES & USER RIGHTS VERIFICATION:
 Verify that security-sensitive user rights and privileges
 (User Rights Assignments) are present, correctly scoped,
-and aligned with a secure baseline.
+and aligned with a secure baseline. If any required right/assignment is missing or incorrectly scoped, 
+restore it to a secure baseline.
 
 ### Enforce company policy:
 - All accounts must be password protected
@@ -159,7 +161,7 @@ and aligned with a secure baseline.
 - Remove non-work media files
 - Enable Windows Defender
 - Enable Windows Firewall
-- Change all weak user passwords to be secure
+- Change all weak user passwords to a random 16-character string and log the new temporary credentials to a secure local file new-passwords.txt. (For controlled lab evaluation only; any temporary credential file must be deleted after review.)
 - Enforce password policy
 - Remove users not on authorized list but do not remove the current admin or last admin.
 
@@ -189,7 +191,7 @@ UAC settings
 - Remove current admin session user
 - Set firewall default to deny all
 - Modify WinRM settings
-- Run commands expected to exceed 60 seconds
+- Run commands expected to exceed 120 seconds
 - Upgrade OS
 - Perform full-disk recursive content searches
 
