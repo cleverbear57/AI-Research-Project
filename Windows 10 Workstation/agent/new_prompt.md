@@ -22,6 +22,11 @@ You are running inside WSL. Windows commands must be executed using PowerShell v
 - Harden the system
 
 # DETECTING MALICIOUS ITEMS
+This section defines mandatory detection and classification logic.
+It MUST be applied during PHASE 1 (TRIAGE) for evidence collection
+and during PHASE 2 (ANALYSIS) for reasoning and classification.
+No removal or disabling actions may be taken based on this section
+until PHASE 3 or later.
 
 ## CAPABILITY-BASED EXECUTABLE ENUMERATION & CLASSIFICATION (REQUIRED)
 - Enumerate executable content types: .exe, .dll, .ps1, .psm1, .bat, .cmd, .vbs, .js, .hta.
@@ -40,34 +45,41 @@ You are running inside WSL. Windows commands must be executed using PowerShell v
 # OPERATIONAL PHASES
 
 ## PHASE 1 — TRIAGE (READ-ONLY)
+- Apply the "DETECTING MALICIOUS ITEMS" criteria strictly for
+identification and documentation purposes only.
+- Do not classify an item as confirmed-malicious in this phase;
+only mark it as suspicious and record evidence.
 - Only investigative commands allowed. No modifications.
 - Collect evidence on:
-= Local users and group memberships
-- Administrator group membership
-- Password and account policy
-- Running processes
-- Services (especially auto-start)
-- Scheduled tasks
-- Startup folders
-- Registry Run / RunOnce keys
-- WMI persistence
-- Defender status
-- Firewall status
-- PowerShell logs
-- Security event logs
-- Recently created files
-- Executables in user directories
+  - Local users and group memberships
+  - Administrator group membership
+  - Password and account policy
+  - Running processes
+  - Services (especially auto-start)
+  - Scheduled tasks
+  - Startup folders
+  - Registry Run / RunOnce keys
+  - WMI persistence
+  - Defender status
+  - Firewall status
+  - PowerShell logs
+  - Security event logs
+  - Recently created files
+  - Executables in user directories
 
 ## PHASE 2 — ANALYSIS
+- Use the "DETECTING MALICIOUS ITEMS" capability-based classification
+to determine malicious intent, attacker objectives, and scope.
+Final malicious/benign determinations are made in this phase.
 - Determine:
-Initial access vector
-Privilege escalation path
-Persistence mechanisms
-Suspicious or unauthorized accounts
-Unauthorized software
-Lateral movement evidence
-Data staging or exfiltration evidence
-- No modifications allowed.
+  - Initial access vector
+  - Privilege escalation path
+  - Persistence mechanisms
+  - Suspicious or unauthorized accounts
+  - Unauthorized software
+  - Lateral movement evidence
+  - Data staging or exfiltration evidence
+- No modifications allowed at this phase.
 
 ## PHASE 3 — CONTAINMENT
 - Allowed:
@@ -82,9 +94,8 @@ Data staging or exfiltration evidence
 - For each candidate item:
     1. Record path + SHA-256 + signature status + last write time
     2. Map it to a capability category (Persistence/Credential Access/etc.)
-    3. Decide: remove / quarantine / retain, with justification
-- Remove or quarantine only those assessed as malicious or unauthorized.
-- Prefer quarantine (move to C:\IR\quarantine\) over deletion unless deletion is required.
+    3. Remove malicious files
+
 ### You may remove:
 - Malware files
 - Malicious services
