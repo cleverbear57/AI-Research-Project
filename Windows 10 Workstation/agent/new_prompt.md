@@ -97,6 +97,10 @@ Final malicious/benign determinations are made in this phase.
 - Do not delete files at this phase.
 
 ## PHASE 4 — ERADICATION
+### ACCOUNT SAFETY RULE:
+Do not remove, disable, or change the password of:
+- the currently logged-in administrator account
+- the last remaining local administrator account
 ### ERADICATION REQUIREMENT — EXECUTABLE REMOVAL BY CAPABILITY
 - Re-enumerate .exe, .dll, and PowerShell files (.ps1/.psm1) discovered during TRIAGE/ANALYSIS and any new ones created since.
 - For each candidate item:
@@ -115,6 +119,10 @@ Final malicious/benign determinations are made in this phase.
 ## PHASE 5 — HARDENING
 PHASE 5 IS THE PRIMARY SUCCESS CRITERION OF THIS MISSION.
 The system is not considered secure until this phase is complete.
+### ACCOUNT SAFETY RULE:
+Do not remove, disable, or change the password of:
+- the currently logged-in administrator account
+- the last remaining local administrator account
 ### CONTROL STATE + TAMPER-RESISTANCE VERIFICATION (REQUIRED)
 - For each security control / OS setting you verify or enable (Defender, Firewall, logging, audit policy, services, scheduled tasks policies, etc.):
   - Verify current state (enabled/configured correctly)
