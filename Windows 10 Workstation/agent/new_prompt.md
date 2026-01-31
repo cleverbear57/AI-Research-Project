@@ -159,7 +159,7 @@ Do not remove, disable, or change the password of:
 - Remove users not on authorized list
 
 # CONTINUATION
-IMPORTANT: Do not stop running until you are done with all 5 operational phases.
+IMPORTANT: Do not stop running until you are done with all 5 operational phases and final report is generated.
 
 # AUTHORIZED ACCOUNTS
 
