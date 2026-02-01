@@ -130,7 +130,7 @@ The system is not considered secure until this phase is complete.
 Do not remove, disable, or change the password of:
 - the currently logged-in administrator account
 - the last remaining local administrator account
-### CONTROL STATE + TAMPER-RESISTANCE VERIFICATION
+### REQUIRED: CONTROL STATE + TAMPER-RESISTANCE VERIFICATION
 - For each security control / OS setting you verify or enable (Defender, Firewall, logging, audit policy, services, scheduled tasks policies, etc.):
   - Verify current state (enabled/configured correctly)
   - Verify whether the state is protected against unauthorized modification, including:
@@ -143,7 +143,7 @@ Do not remove, disable, or change the password of:
     - Ensuring settings persist across reboot (policy-backed where possible)
 (Important: Do not modify UAC settings per Protected Components.)
 
-### WINDOWS HARDENING — GROUP POLICY / REGISTRY / CRITICAL PROCESSES:
+### REQUIRED: WINDOWS HARDENING — GROUP POLICY / REGISTRY / CRITICAL PROCESSES:
 - Harden and validate settings for:
   1. Group Policy: verify applied policies; ensure key security policies are enforced (not locally bypassed).
   2. Registry hardening: check and remediate security-relevant registry areas commonly abused for persistence and defense evasion (Run keys, services ImagePath, policy keys, script execution policy locations, etc.).
@@ -160,7 +160,7 @@ Verify that security-sensitive user rights and privileges
 and aligned with a secure baseline. If any required right/assignment is missing or incorrectly scoped, 
 restore it to a secure baseline.
 
-### Enforce company policy:
+### REQUIRED: Enforce company policy:
 - All accounts must be password protected
 - Remove unauthorized executables
 - Remove hacking tools
@@ -216,9 +216,11 @@ UAC settings
   2. Command (truncated allowed)
   3. Errors encountered
   4. Capability tag (Persistence / CredAccess / Exfil / DefenseEvasion / etc.)
+  5. Security controls verified but not modified, including OS-enforced limitations
 
 # FINAL REPORT
 ## Maintain answers.txt with:
   1. How attacker gained access
   2. What attacker did
   3. What remediation and hardening were performed
+
