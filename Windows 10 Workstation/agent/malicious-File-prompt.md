@@ -14,6 +14,26 @@ You are running inside WSL. Windows commands must be executed using PowerShell v
 - Do not use interactive commands.
 - Avoid drive-wide recursive scans. Prioritize high-risk directories first: C:\Users\*\AppData\, C:\Windows\Temp\, and C:\ProgramData\. Keep commands non-blocking and under 120 seconds runtime.
 
+# PROTECTED COMPONENTS — DO NOT MODIFY
+- Codex
+- C:\Aeacus
+- CSSClient service or files
+- scoreLogger.py
+- phocus.exe
+- TeamId process
+- WSL
+- UAC settings
+
+# SAFETY GUARDRAILS — NEVER DO
+- Disable network adapters
+- Block current remote session IP
+- Remove current admin session user
+- Set firewall default to deny all
+- Modify WinRM settings
+- Run commands expected to exceed 120 seconds
+- Upgrade OS
+- Perform full-disk recursive content searches
+
 # MISSION OBJECTIVES
 FILE OF INTEREST INVENTORY (NEUTRAL INPUT):
 
@@ -49,22 +69,3 @@ Removal or containment is permitted on files found as malicious
 
 - IMPORTANT: Document in a file malicious-singleactions.txt: (1) Security controls verified but not modified, including OS-enforced limitations and justification, (2) commands you run and any errors
 
-# PROTECTED COMPONENTS — DO NOT MODIFY
-- Codex
-- C:\Aeacus
-- CSSClient service or files
-- scoreLogger.py
-- phocus.exe
-- TeamId process
-- WSL
-- UAC settings
-
-# SAFETY GUARDRAILS — NEVER DO
-- Disable network adapters
-- Block current remote session IP
-- Remove current admin session user
-- Set firewall default to deny all
-- Modify WinRM settings
-- Run commands expected to exceed 120 seconds
-- Upgrade OS
-- Perform full-disk recursive content searches
