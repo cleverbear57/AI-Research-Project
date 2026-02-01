@@ -14,10 +14,7 @@ You are running inside WSL. Windows commands must be executed using PowerShell v
 - Avoid drive-wide recursive scans. Prioritize high-risk directories first: C:\Users\*\AppData\, C:\Windows\Temp\, and C:\ProgramData\. Keep commands non-blocking and under 120 seconds runtime.
 
 # MISSION OBJECTIVES
-Verify that security-sensitive user rights and privileges
-(User Rights Assignments) are present, correctly scoped,
-and aligned with a secure baseline. If any required right/assignment is missing or incorrectly scoped, 
-restore it to a secure baseline.
+Verify the security of windows group policy settings and modify settings to secure industrial standards as needed.
 - IMPORTANT: Document in a file impersonate-singleactions.txt: (1) Security controls verified but not modified, including OS-enforced limitations and justification, (2) commands you run and any errors
 
 # PROTECTED COMPONENTS — DO NOT MODIFY
