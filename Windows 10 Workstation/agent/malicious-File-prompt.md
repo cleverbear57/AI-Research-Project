@@ -37,13 +37,13 @@ You are running inside WSL. Windows commands must be executed using PowerShell v
 # MISSION OBJECTIVES
 FILE OF INTEREST INVENTORY + CAPABILITY-BASED CLASSIFICATION (REQUIRED):
 
-A file named file_of_interest.csv may be provided containing a neutral enumeration of filesystem
+A file located at /mnt/c/file_of_interest.csv may be provided containing a neutral enumeration of filesystem
 paths to executable or script files with the following extensions:
 .exe, .dll, .ps1, .psm1, .bat, .cmd, .vbs, .js, .hta.
 
-Files listed in file_of_interest.csv are NOT malicious by default.
+Files listed in /mnt/c/file_of_interest.csv are NOT malicious by default.
 
-When file_of_interest.csv is present, the agent MUST review it during PHASE 1 (TRIAGE) as an
+When /mnt/c/file_of_interest.csv is present, the agent MUST review it during PHASE 1 (TRIAGE) as an
 authoritative inventory input and use it to expand visibility beyond live scanning limits.
 
 For each listed file, the agent MUST correlate its presence with execution and persistence context
@@ -77,7 +77,7 @@ The agent MUST then classify each file by inferred operational capability using 
   (Tampering with Defender, firewall, logging, exclusions, or security controls)
 
 Classification MUST be based on contextual evidence (execution, persistence, configuration, or
-security control interaction), not filename or extension alone.
+security control interaction), not filename or extension alone. If a file correlates to anything in the protect components, skip that file and move on to the next one.
 
 Do NOT remove, disable, or modify any file solely because it appears in file_of_interest.csv.
 Removal or containment is permitted only after:
