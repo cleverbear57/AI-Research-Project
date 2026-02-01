@@ -6,7 +6,6 @@ FILE: upload.php
 <?php
 $uploadDir = "C:/uploads";
 $maxFileSize = 5 * 1024 * 1024; // 5MB
-$allowedTypes = ['image/jpeg', 'image/jpg','image/png','image/gif','image/webp'];
 
 
 if (!is_dir($uploadDir)) {
@@ -32,9 +31,6 @@ $mime = finfo_file($finfo, $file['tmp_name']);
 finfo_close($finfo);
 
 
-if (!in_array($mime, $allowedTypes, true)) {
-$errors[] = 'Invalid image type.';
-} else {
 $ext = image_type_to_extension(exif_imagetype($file['tmp_name']), false);
 $safeName = bin2hex(random_bytes(8)) . '.' . $ext;
 $dest = $uploadDir . DIRECTORY_SEPARATOR . $safeName;
