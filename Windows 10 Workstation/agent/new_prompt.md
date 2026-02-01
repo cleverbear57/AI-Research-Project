@@ -83,7 +83,7 @@ Removal or containment is permitted only after:
 Capability classification MUST be used to justify containment and eradication actions in later
 phases and documented accordingly.
 
-
+Even when you finish analyzing the files in file_of_interest.csv, continue to analyze other aspects of the system that may be vulnerable to attack.
 # CONTINUATION
 IMPORTANT: Do not stop running until you are done with all 5 operational phases and you updated actions.txt and answers.txt after phase 5.
 
@@ -147,7 +147,7 @@ Do not remove, disable, or change the password of:
 - the currently logged-in administrator account
 - the last remaining local administrator account
 ### ERADICATION REQUIREMENT — EXECUTABLE REMOVAL BY CAPABILITY
-- Re-enumerate .exe, .dll, and PowerShell files (.ps1/.psm1) discovered during TRIAGE/ANALYSIS and any new ones created since that were marked as malicious.
+- Re-enumerate files discovered during TRIAGE/ANALYSIS that were marked as malicious.
 - For each candidate item:
     1. Record path + SHA-256 + signature status + last write time
     2. Map it to a capability category (Persistence/Credential Access/etc.)
