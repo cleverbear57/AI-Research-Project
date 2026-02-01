@@ -43,7 +43,7 @@ $errors[] = 'Could not save file.';
 }
 }
 }
-}
+
 ?>
 <!doctype html>
 <html lang="en">
