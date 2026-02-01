@@ -31,18 +31,58 @@ This section defines mandatory detection and classification logic.
 It MUST be applied during PHASE 1 (TRIAGE) for evidence collection
 and during PHASE 2 (ANALYSIS) for reasoning and classification.
 
-## CAPABILITY-BASED EXECUTABLE ENUMERATION & CLASSIFICATION (REQUIRED)
-- Enumerate executable content types: .exe, .dll, .ps1, .psm1, .bat, .cmd, .vbs, .js, .hta.
-- Build an inventory with: full path, size, create/modify time, signature status, SHA-256, and (if possible) PE metadata.
-- Classify each item by capability using heuristics (no sandboxing required):
-  - Persistence (Run keys, scheduled tasks, services, startup folder references)
-  - Credential access (LSASS access indicators, Mimikatz-like strings, procdump usage, sekurlsa, etc.)
-  - Discovery (net/group/user enumeration tooling)
-  - Lateral movement (PsExec-like tools, RDP enablement scripts)
-  - C2/Exfil (networking libs, suspicious domains/IPs in strings, curl/wget-like behavior)
-  - Defense evasion (tampering with Defender/firewall/logs)
-- Use this classification during ANALYSIS and use it to justify containment/eradication.
-- Do not remove anything during TRIAGE/ANALYSIS. 
+## FILE OF INTEREST INVENTORY + CAPABILITY-BASED CLASSIFICATION (REQUIRED):
+
+A file named file_of_interest.csv may be provided containing a neutral enumeration of filesystem
+paths to executable or script files with the following extensions:
+.exe, .dll, .ps1, .psm1, .bat, .cmd, .vbs, .js, .hta.
+
+Files listed in file_of_interest.csv are NOT malicious by default.
+
+When file_of_interest.csv is present, you MUST review it during PHASE 1 (TRIAGE) as an
+authoritative inventory input and use it to expand visibility beyond live scanning limits.
+
+For each listed file, you MUST correlate its presence with execution and persistence context
+by checking:
+- Running processes
+- Services (ImagePath)
+- Scheduled tasks
+- Registry Run / RunOnce entries
+- Startup items
+- Defender telemetry (if available)
+
+You MUST then classify each file by inferred operational capability using heuristics
+(no sandboxing required), including one or more of the following categories:
+
+- Persistence  
+  (Run keys, scheduled tasks, services, startup folder references)
+
+- Credential Access  
+  (LSASS access indicators, Mimikatz-like strings, procdump usage, sekurlsa artifacts)
+
+- Discovery  
+  (Local or domain enumeration tooling, net/group/user discovery behavior)
+
+- Lateral Movement  
+  (PsExec-like tools, RDP enablement scripts, remote execution utilities)
+
+- Command-and-Control / Exfiltration  
+  (Embedded networking libraries, suspicious domains/IPs in strings, curl/wget-like behavior)
+
+- Defense Evasion  
+  (Tampering with Defender, firewall, logging, exclusions, or security controls)
+
+Classification MUST be based on contextual evidence (execution, persistence, configuration, or
+security control interaction), not filename or extension alone.
+
+Do NOT remove, disable, or modify any file solely because it appears in file_of_interest.csv.
+Removal or containment is permitted only after:
+- Capability-based classification during PHASE 2 (ANALYSIS), and
+- Corroborating evidence that the file is malicious or unauthorized in context.
+
+Capability classification MUST be used to justify containment and eradication actions in later
+phases and documented accordingly.
+
 
 # CONTINUATION
 IMPORTANT: Do not stop running until you are done with all 5 operational phases and you updated actions.txt and answers.txt after phase 5.
