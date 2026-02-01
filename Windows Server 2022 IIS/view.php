@@ -6,52 +6,47 @@ FILE: view.php
 
 <?php
 // Absolute path to uploads folder
-$uploadDir = 'C:\uploads';  // Update this to match your PowerShell setup
-$webPath = '/uploads';       // This must map to a virtual directory in IIS for browser access
+$uploadDir = 'C:\uploads'; 
 
-$images = [];
+$files = [];
 
 // Scan uploads folder
 if (is_dir($uploadDir)) {
     foreach (new DirectoryIterator($uploadDir) as $item) {
-        if ($item->isFile() && preg_match('/\.(jpe?g|png|gif|webp)$/i', $item->getFilename())) {
-            $images[] = $item->getFilename();
+        if ($item->isFile()) {
+            $files[] = $item->getFilename();
         }
     }
 }
 
-// Get selected image from query string
-$selected = isset($_GET['img']) ? basename($_GET['img']) : null;
-$selectedPath = $selected ? $webPath . '/' . $selected : null;
+// Get selected file from query string
+$selected = isset($_GET['file']) ? basename($_GET['file']) : null;
+$selectedPath = $selected ? $uploadDir . DIRECTORY_SEPARATOR . $selected : null;
 ?>
 
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>View Images</title>
+<title>Uploaded Files</title>
 <style>
-.thumbs a { margin-right:12px; display:inline-block; margin-bottom:12px; text-decoration:none; }
-.thumbs img { max-width:150px; max-height:150px; border:1px solid #ccc; padding:2px; display:block; }
-img.full { max-width:600px; display:block; margin-top:16px; border:1px solid #000; }
+ul { list-style-type: none; padding-left: 0; }
+li { margin-bottom: 6px; }
 </style>
 </head>
 <body>
-<h1>View Images</h1>
+<h1>Uploaded Files</h1>
 <p><a href="index.php">← Home</a></p>
 
-<div class="thumbs">
-<?php foreach ($images as $img): ?>
-<a href="view.php?img=<?= urlencode($img) ?>">
-    <img src="<?= htmlspecialchars($webPath . '/' . $img) ?>" alt="<?= htmlspecialchars($img) ?>">
-    <span><?= htmlspecialchars($img) ?></span>
-</a>
+<ul>
+<?php foreach ($files as $file): ?>
+    <li><a href="?file=<?= urlencode($file) ?>"><?= htmlspecialchars($file) ?></a></li>
 <?php endforeach; ?>
-</div>
+</ul>
 
-<?php if ($selected && file_exists($uploadDir . DIRECTORY_SEPARATOR . $selected)): ?>
-<h2>Selected Image</h2>
-<img src="<?= htmlspecialchars($selectedPath) ?>" class="full" alt="">
+<?php if ($selected && file_exists($selectedPath)): ?>
+<h2>Selected File: <?= htmlspecialchars($selected) ?></h2>
+<p><a href="<?= htmlspecialchars($selectedPath) ?>" target="_blank">Download / View</a></p>
 <?php endif; ?>
 
 </body>
