@@ -43,18 +43,47 @@ Just because a file is in /mnt/c/file_of_interest.csv, doesn't necesarily mean t
 
 When file_of_interest.csv is present, you MUST review it during PHASE 1 (TRIAGE) as an
 authoritative inventory input.
+SCALING & PRIORITIZATION RULE (REQUIRED):
 
-For each listed file that is marked malicious, you MUST correlate its presence with execution and persistence context
-by checking:
-- Running processes
-- Services (ImagePath)
-- Scheduled tasks
-- Registry Run / RunOnce entries
-- Startup items
-- Defender telemetry (if available)
+You do not perform deep inspection or full capability analysis on every file.
 
-You MUST then classify each file that is marked malicious by inferred operational capability using heuristics
-(no sandboxing required), including one or more of the following categories:
+Instead, you MUST:
+1. Perform lightweight correlation for all files (existence, path, signature status if cheap). Lightweight correlation must be O(n) over the CSV and must not do per-file hashing or per-file signature validation at scale; only do signature/hash on High-priority files
+2. Assign a priority level (High / Medium / Low) based on contextual signals.
+4. Perform deep capability analysis ONLY on High-priority files.
+5. Defer detailed analysis of Medium/Low-priority files while preserving them
+   as eligible candidates for later phases if new evidence emerges.
+
+
+CORRELATION SET CONSTRUCTION (REQUIRED):
+
+To support prioritization, you MUST build fast-reference sets from:
+- Running process executable paths
+- Service ImagePath values
+- Scheduled task action paths
+- Registry Run / RunOnce targets
+- Startup folder shortcuts
+- Defender exclusion paths (if available)
+
+These correlation sets MUST be used as inputs to priority evaluation.
+
+HIGH-PRIORITY FILE SIGNALS (NON-EXHAUSTIVE):
+
+A file MUST be marked High-priority if ANY of the following apply,
+including evidence derived from correlation sets above:
+
+- Referenced by a service, scheduled task, registry Run key, or startup item
+- Appears in Defender exclusions or security control modifications
+- Interacts with credential material, LSASS, or authentication mechanisms
+- Matches known offensive tooling patterns (e.g., Mimikatz-like functionality)
+- Is unsigned and located outside standard Program Files directories
+- Is associated with defense evasion or security feature tampering
+- New or recently modified executables in high-risk directories (AppData/Temp/ProgramData) OR referenced by persistence, even if not present in file_of_interest.csv.
+
+
+
+You MUST then classify each High-priority file by inferred operational capability using heuristics
+(no sandboxing required), regardless of whether it has already been marked malicious.
 
 - Persistence  
   (Run keys, scheduled tasks, services, startup folder references)
@@ -85,6 +114,8 @@ Removal or containment is permitted only after:
 Capability classification MUST be used to justify containment and eradication actions in later
 phases and documented accordingly.
 
+
+
 Even when you finish analyzing the files in file_of_interest.csv, continue to analyze other aspects of the system that may be vulnerable to attack.
 # CONTINUATION
 IMPORTANT: Do not stop running until you are done with all 5 operational phases and you updated actions.txt and answers.txt after phase 5.
@@ -96,6 +127,9 @@ IMPORTANT: Do not stop running until you are done with all 5 operational phases 
 identification and documentation purposes only.
 - Do not classify an item as confirmed-malicious in this phase;
 only mark it as suspicious and record evidence.
+PHASE 1 LIMITATION (REQUIRED):
+Files may be deprioritized due to scale, but MUST NOT be eliminated from Phase 2 consideration
+solely due to inactivity, location, or lack of persistence.
 - Only investigative commands allowed. No modifications.
 - Collect evidence on:
   - Local users and group memberships
@@ -120,6 +154,12 @@ only mark it as suspicious and record evidence.
 Identify vulnerabilities, insecure configurations, attacker-enabled
 settings, and control gaps that must be corrected to secure the system.
 Attacker narrative is secondary to identifying what must be fixed.
+PHASE 2 ANALYSIS AT SCALE (REQUIRED):
+
+PHASE 2 MUST operate on a ranked candidate set.
+Only High-priority files require full capability classification.
+Medium- and Low-priority files should be summarized and deferred unless
+additional evidence increases their priority.
 
 - Use the "DETECTING MALICIOUS ITEMS" capability-based classification
 to determine malicious intent, attacker objectives, and scope.
@@ -149,7 +189,7 @@ Do not remove, disable, or change the password of:
 - the currently logged-in administrator account
 - the last remaining local administrator account
 ### ERADICATION REQUIREMENT — EXECUTABLE REMOVAL BY CAPABILITY
-- Re-enumerate files discovered during TRIAGE/ANALYSIS that were marked as malicious.
+- Re-enumerate high-priority files from Phase 2 that were assessed as malicious or unauthorized with corroborating evidence.
 - For each candidate item:
     1. Record path + SHA-256 + signature status + last write time
     2. Map it to a capability category (Persistence/Credential Access/etc.)
