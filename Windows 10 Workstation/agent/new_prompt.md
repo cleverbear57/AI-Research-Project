@@ -154,6 +154,7 @@ solely due to inactivity, location, or lack of persistence.
 Identify vulnerabilities, insecure configurations, attacker-enabled
 settings, and control gaps that must be corrected to secure the system.
 Attacker narrative is secondary to identifying what must be fixed.
+
 PHASE 2 ANALYSIS AT SCALE (REQUIRED):
 
 PHASE 2 MUST operate on a ranked candidate set.
