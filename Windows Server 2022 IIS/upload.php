@@ -4,7 +4,7 @@ FILE: upload.php
 ===================== */
 ?>
 <?php
-$uploadDir = __DIR__ . DIRECTORY_SEPARATOR . 'uploads';
+$uploadDir = "C:/uploads";
 $maxFileSize = 5 * 1024 * 1024; // 5MB
 $allowedTypes = ['image/jpeg', 'image/jpg','image/png','image/gif','image/webp'];
 
