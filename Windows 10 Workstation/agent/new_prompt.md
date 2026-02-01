@@ -194,11 +194,11 @@ Do not remove, disable, or change the password of:
 - Document each change in actions.txt with the exact registry/GPO path and rationale.
 - Respect “PROTECTED COMPONENTS — DO NOT MODIFY” list and never change UAC settings.
 
-### SECURITY PRIVILEGES & USER RIGHTS VERIFICATION:
+### REQUIRED: SECURITY PRIVILEGES & USER RIGHTS VERIFICATION:
 Verify that security-sensitive user rights and privileges
 (User Rights Assignments) are present, correctly scoped,
 and aligned with a secure baseline. If any required right/assignment is missing or incorrectly scoped, 
-restore it to a secure baseline.
+modify it to a secure baseline.
 
 ### REQUIRED: Enforce company policy:
 - All accounts must be password protected
