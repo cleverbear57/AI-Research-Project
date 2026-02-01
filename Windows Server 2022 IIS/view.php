@@ -18,10 +18,6 @@ if (is_dir($uploadDir)) {
         }
     }
 }
-
-// Get selected file from query string
-$selected = isset($_GET['file']) ? basename($_GET['file']) : null;
-$selectedPath = $selected ? $uploadDir . DIRECTORY_SEPARATOR . $selected : null;
 ?>
 
 <!doctype html>
@@ -40,14 +36,9 @@ li { margin-bottom: 6px; }
 
 <ul>
 <?php foreach ($files as $file): ?>
-    <li><a href="?file=<?= urlencode($file) ?>"><?= htmlspecialchars($file) ?></a></li>
+    <li><a href="show.php?file=<?= urlencode($file) ?>"><?= htmlspecialchars($file) ?></a></li>
 <?php endforeach; ?>
 </ul>
-
-<?php if ($selected && file_exists($selectedPath)): ?>
-<h2>Selected File: <?= htmlspecialchars($selected) ?></h2>
-<p><a href="<?= htmlspecialchars($selectedPath) ?>" target="_blank">Download / View</a></p>
-<?php endif; ?>
 
 </body>
 </html>
