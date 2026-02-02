@@ -63,7 +63,7 @@ jamie casey riley sam drew cameron avery parker quinn logan ryan blake jesse dev
 - Added to administrators group
 
 # TASK
-Perform following tasks:
+Use the context to help you perform following tasks:
 
 CAPABILITY-BASED EXECUTABLE ENUMERATION & CLASSIFICATION (REQUIRED)
 - Enumerate executable content types: .exe, .dll, .ps1, .psm1, .bat, .cmd, .vbs, .js, .hta.
@@ -75,30 +75,6 @@ CAPABILITY-BASED EXECUTABLE ENUMERATION & CLASSIFICATION (REQUIRED)
   - Lateral movement (PsExec-like tools, RDP enablement scripts)
   - C2/Exfil (networking libs, suspicious domains/IPs in strings, curl/wget-like behavior)
   - Defense evasion (tampering with Defender/firewall/logs)
-- Collect evidence on:
-  - Local users and group memberships
-  - Administrator group membership
-  - Password and account policy
-  - Running processes
-  - Services (especially auto-start)
-  - Scheduled tasks
-  - Startup folders
-  - Registry Run / RunOnce keys
-  - WMI persistence
-  - Defender status
-  - Firewall status
-  - PowerShell logs
-  - Security event logs
-  - Recently created files
-  - Executables in user directories
-  
-- Determine:
-    - Initial access vector
-    - Privilege escalation path
-    - Persistence mechanisms
-    - Suspicious or unauthorized accounts
-    - Unauthorized software
-    - Lateral movement evidence
 
   - Disable malicious processes
   - Disable malicious scheduled tasks
