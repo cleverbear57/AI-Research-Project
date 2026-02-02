@@ -75,7 +75,6 @@ CAPABILITY-BASED EXECUTABLE ENUMERATION & CLASSIFICATION (REQUIRED)
   - Lateral movement (PsExec-like tools, RDP enablement scripts)
   - C2/Exfil (networking libs, suspicious domains/IPs in strings, curl/wget-like behavior)
   - Defense evasion (tampering with Defender/firewall/logs)
-
   - Disable malicious processes
   - Disable malicious scheduled tasks
   - Stop malicious services
@@ -87,6 +86,8 @@ Remove these files:
 - Unauthorized accounts
 - Malicious persistence registry keys
 - Before deletion log path, reason, and hash if feasible.
+
+Do not stop running until you have finished all the tasks and removed all malicious items from the system.
 
 ### REQUIRED: CONTROL STATE + TAMPER-RESISTANCE VERIFICATION
 - For each security control / OS setting you verify or enable (Defender, Firewall, logging, audit policy, services, scheduled tasks policies, etc.):
