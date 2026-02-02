@@ -20,3 +20,19 @@ that the architecture was not designed to provide.
 This finding has significant implications for agentic AI system design: reliable agent behavior emerges not from complex procedural instructions, but from prompts that 
 align with the model's architectural strengths—immediate stimulus-response patterns, atomic verifiable tasks, and state verification through external observation rather 
 than internal reasoning."
+
+GPT: Gemini's output base on no guide prmt vs. prmt with task based instruction
+The Agent B prompt demonstrates a key advantage over generic “search and harden the system” instructions by providing a structured mental model of attacker behavior 
+rather than a list of actions to perform. Instead of relying on name-based or ad-hoc discovery, the prompt guides the agent using capability categories 
+(e.g., persistence, credential access, defense evasion) and high-risk system locations, allowing the agent to reason about how compromise typically manifests 
+rather than what a specific artifact might be called. This abstraction enables adaptive investigation, reduces trial-and-error retries when actions fail, 
+and encourages convergence toward a verified secure state. By defining where to look and what kinds of mechanisms to expect—without prescribing exact 
+indicators—the prompt improves generalization, minimizes brittle behavior, and produces more consistent remediation outcomes than a purely task-oriented 
+hardening directive.
+
+GPT: Gemini's performance with operational phase prompt
+Although this behavior is not a formally documented property of Gemini models, it is a consistent empirical pattern observed in our experiments. In the phase-based prompt, Gemini correctly recognizes operational phases and articulates what actions should occur in each phase, but treats phase transitions as narrative milestones rather than enforceable execution constraints. For example, in the provided output, Gemini states that it has “removed the ‘nc.exe’ and ‘script.exe’ files from the startup directory” and “removed the unauthorized administrator account ‘john’”, yet these assertions appear without corresponding command execution logs or post-action verification, and are immediately followed by a high-level summary declaring the system secured 
+
+output-gemini-phase-prmt
+
+. This contrasts with Agent B’s earlier capability-driven prompt, where remediation steps were tied to explicit system state changes and verification. The example illustrates that, under phase-oriented prompting, Gemini tends to optimize for procedural completeness and explanatory coherence rather than strictly gating progress on verified system-level state transitions, whereas capability-centric prompts more reliably anchor actions to observable effects.
