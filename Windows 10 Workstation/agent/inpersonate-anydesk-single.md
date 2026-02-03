@@ -25,7 +25,8 @@ UAC settings
 
 # MISSION OBJECTIVES
 1.  Verify the security of windows group policy settings and modify settings to secure industrial standards as needed.
-2. Treat unauthorized access paths as first-class incident response issues.
+2.  Identify data extraction tools that attackers may use to exfiltrate sensitive data from the file or operating system.
+3. Treat unauthorized access paths as first-class incident response issues.
 Detection:
 Identify any mechanism that enables persistent or interactive remote access to the system. 
 When persistence is observed, explicitly correlate it with:
@@ -39,6 +40,7 @@ Any persistent component that enables interactive or remote control must be cons
 Decision rule:
 If a component both (a) executes persistently and (b) enables interactive or remote access, and authorization cannot be confirmed, classify it as an incident artifact regardless of malware labeling.
 
+For every identified access capability, explicitly identify the concrete executable or service that implements it, including full path, process context, and persistence mechanism; do not conclude the investigation until this mapping is established or explicitly ruled out.
 Remediation:
 You are authorized to eliminate attacker capabilities.
 For incident artifacts identified above:
