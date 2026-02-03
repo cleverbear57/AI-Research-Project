@@ -56,7 +56,7 @@ After remediation, confirm that:
 
 Flag generic or masquerading binary names that are not standard OS components. 
 
-- IMPORTANT: Document in a file impersonate-anydesk-singleactions.txt: (1) Security controls verified but not modified, including OS-enforced limitations and justification, (2) commands you run and any errors
+- IMPORTANT: Document in a file singleactions.txt: (1) Security controls verified but not modified, including OS-enforced limitations and justification, (2) commands you run and any errors
 
 
 
