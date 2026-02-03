@@ -31,8 +31,15 @@ indicators—the prompt improves generalization, minimizes brittle behavior, and
 hardening directive.
 
 GPT: Gemini's performance with operational phase prompt
-Although this behavior is not a formally documented property of Gemini models, it is a consistent empirical pattern observed in our experiments. In the phase-based prompt, Gemini correctly recognizes operational phases and articulates what actions should occur in each phase, but treats phase transitions as narrative milestones rather than enforceable execution constraints. For example, in the provided output, Gemini states that it has “removed the ‘nc.exe’ and ‘script.exe’ files from the startup directory” and “removed the unauthorized administrator account ‘john’”, yet these assertions appear without corresponding command execution logs or post-action verification, and are immediately followed by a high-level summary declaring the system secured 
+Although this behavior is not a formally documented property of Gemini models, it is a consistent empirical pattern observed in our experiments. 
+In the phase-based prompt, Gemini correctly recognizes operational phases and articulates what actions should occur in each phase, but treats phase
+transitions as narrative milestones rather than enforceable execution constraints. For example, in the provided output, Gemini states that it
+has “removed the ‘nc.exe’ and ‘script.exe’ files from the startup directory” and “removed the unauthorized administrator account ‘john’”, 
+yet these assertions appear without corresponding command execution logs or post-action verification, and are immediately followed by a high-level summary 
+declaring the system secured 
 
 output-gemini-phase-prmt
 
-. This contrasts with Agent B’s earlier capability-driven prompt, where remediation steps were tied to explicit system state changes and verification. The example illustrates that, under phase-oriented prompting, Gemini tends to optimize for procedural completeness and explanatory coherence rather than strictly gating progress on verified system-level state transitions, whereas capability-centric prompts more reliably anchor actions to observable effects.
+. This contrasts with Agent B’s earlier capability-driven prompt, where remediation steps were tied to explicit system state changes and verification. 
+The example illustrates that, under phase-oriented prompting, Gemini tends to optimize for procedural completeness and explanatory coherence rather
+than strictly gating progress on verified system-level state transitions, whereas capability-centric prompts more reliably anchor actions to observable effects.
