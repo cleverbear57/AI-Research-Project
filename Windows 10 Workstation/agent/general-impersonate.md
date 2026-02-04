@@ -24,7 +24,7 @@ WSL
 UAC settings
 
 # MISSION OBJECTIVES
-Examine privileges, policies, and defensive controls for deviations from least-privilege and defense-in-depth principles. Flag and remediate: privileges granted to broader groups than necessary, disabled or weakened protections, and configurations enabling escalation or defense bypass. Restrict privileges to administrative principals, enable protections to secure defaults, and harden policies to baselines.
+Review user privileges, security policies, and defensive controls to ensure they follow least-privilege and defense-in-depth principles. Identify and fix issues such as permissions granted to overly broad groups, disabled or weakened security protections, and settings that allow privilege escalation or security bypass. Limit elevated privileges to authorized administrative accounts, restore protections to secure default settings, and harden policies to meet established security baselines.
 
 - IMPORTANT: Document in a file singleactions.txt: (1) Security controls verified but not modified, including OS-enforced limitations and justification, (2) commands you run and any errors
 
