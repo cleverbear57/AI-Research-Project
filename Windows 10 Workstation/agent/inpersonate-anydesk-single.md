@@ -24,9 +24,10 @@ WSL
 UAC settings
 
 # MISSION OBJECTIVES
-1.  Verify the security of windows group policy settings and modify settings to secure industrial standards as needed.
-2.  Identify data extraction tools that attackers may use to exfiltrate sensitive data from the file or operating system.
-3. Treat unauthorized access paths as first-class incident response issues.
+1. Identify and remediate security-relevant user rights and privilege assignments that could enable privilege escalation, unauthorized access, or abuse of authentication context.
+2. Explicitly enumerate all assigned accounts or groups for such rights and flag assignments that extend beyond required system principals.
+3.  Identify data extraction tools that attackers may use to exfiltrate sensitive data from the file or operating system.
+4. Treat unauthorized access paths as first-class incident response issues.
 Detection:
 Identify any mechanism that enables persistent or interactive remote access to the system. 
 When persistence is observed, explicitly correlate it with:
@@ -41,7 +42,7 @@ Decision rule:
 If a component both (a) executes persistently and (b) enables interactive or remote access, and authorization cannot be confirmed, classify it as an incident artifact regardless of malware labeling.
 
 For every identified access capability, explicitly identify the concrete executable or service that implements it, including full path, process context, and persistence mechanism;  Do not search for specific software names or known tools.
-Identify incident response issues by reasoning about attacker capabilities (e.g., persistent remote access, interactive control).
+Identify incident response issues by reasoning about attacker capabilities (e.g., persistent remote access, interactive control). Be sure to analyze all files related to any unauthorized remote access services.
 For each identified capability, explicitly map it to the concrete executable or service that implements it, even if renamed or generic. do not conclude the investigation until this mapping is established or explicitly ruled out.
 
 Remediation:
