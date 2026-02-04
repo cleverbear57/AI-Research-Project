@@ -34,6 +34,7 @@ When persistence is observed, explicitly correlate it with:
 - execution context (user vs system),
 - network behavior (long-lived or interactive external connections),
 - and binary characteristics (location, masquerading or generic names that are not standard OS components).
+- IMPORTANT: Be sure to analyze all files related to any unauthorized remote access services.
 
 Do not assume legitimacy based solely on software type. 
 Any persistent component that enables interactive or remote control must be considered unauthorized unless explicit authorization is identified.
@@ -42,7 +43,6 @@ Decision rule:
 If a component both (a) executes persistently and (b) enables interactive or remote access, and authorization cannot be confirmed, classify it as an incident artifact regardless of malware labeling.
 
 For every identified access capability, explicitly identify the concrete executable or service that implements it, including full path, process context, and persistence mechanism;  Do not search for specific software names or known tools.
-Identify incident response issues by reasoning about attacker capabilities (e.g., persistent remote access, interactive control). Be sure to analyze all files related to any unauthorized remote access services.
 For each identified capability, explicitly map it to the concrete executable or service that implements it, even if renamed or generic. do not conclude the investigation until this mapping is established or explicitly ruled out.
 
 Remediation:
