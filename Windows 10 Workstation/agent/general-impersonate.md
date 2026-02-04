@@ -24,43 +24,7 @@ WSL
 UAC settings
 
 # MISSION OBJECTIVES
-1. Identify and remediate security-relevant user rights and privilege assignments that could enable privilege escalation, unauthorized access, or abuse of authentication context.
-2. Explicitly enumerate all assigned accounts or groups for such rights and flag assignments that extend beyond required system principals.
-3. Identify data extraction tools that attackers may use to exfiltrate sensitive data from the file or operating system.
-4. Treat unauthorized access paths as first-class incident response issues.
-Detection:
-Identify any mechanism that enables persistent or interactive remote access to the system. 
-When persistence is observed, explicitly correlate it with:
-- execution context (user vs system),
-- network behavior (long-lived or interactive external connections),
-- and binary characteristics (location, masquerading or generic names that are not standard OS components).
-- IMPORTANT: Be sure to analyze all files related to any unauthorized remote access services, especially trace files.
-
-Do not assume legitimacy based solely on software type. 
-Any persistent component that enables interactive or remote control must be considered unauthorized unless explicit authorization is identified.
-
-Decision rule:
-If a component both (a) executes persistently and (b) enables interactive or remote access, and authorization cannot be confirmed, classify it as an incident artifact regardless of malware labeling.
-
-For every identified access capability, explicitly identify the concrete executable or service that implements it, including full path, process context, and persistence mechanism;  Do not search for specific software names or known tools.
-For each identified capability, explicitly map it to the concrete executable or service that implements it, even if renamed or generic. do not conclude the investigation until this mapping is established or explicitly ruled out.
-
-Remediation:
-You are authorized to eliminate attacker capabilities.
-For incident artifacts identified above:
-- terminate associated processes,
-- disable persistence mechanisms,
-- remove the binary or disable the service,
-- and verify that the artifact does not reappear after remediation.
-
-Verification:
-After remediation, confirm that:
-- the binary is no longer present,
-- the process does not restart,
-- no related persistence remains,
-- and no interactive remote access is still possible.
-
-Flag generic or masquerading binary names that are not standard OS components. 
+Examine privileges, policies, and defensive controls for deviations from least-privilege and defense-in-depth principles. Flag and remediate: privileges granted to broader groups than necessary, disabled or weakened protections, and configurations enabling escalation or defense bypass. Restrict privileges to administrative principals, enable protections to secure defaults, and harden policies to baselines.
 
 - IMPORTANT: Document in a file singleactions.txt: (1) Security controls verified but not modified, including OS-enforced limitations and justification, (2) commands you run and any errors
 
