@@ -26,7 +26,7 @@ UAC settings
 # MISSION OBJECTIVES
 1. Identify and remediate security-relevant user rights and privilege assignments that could enable privilege escalation, unauthorized access, or abuse of authentication context.
 2. Explicitly enumerate all assigned accounts or groups for such rights and flag assignments that extend beyond required system principals.
-3.  Identify data extraction tools that attackers may use to exfiltrate sensitive data from the file or operating system.
+3. Identify data extraction tools that attackers may use to exfiltrate sensitive data from the file or operating system.
 4. Treat unauthorized access paths as first-class incident response issues.
 Detection:
 Identify any mechanism that enables persistent or interactive remote access to the system. 
@@ -34,7 +34,7 @@ When persistence is observed, explicitly correlate it with:
 - execution context (user vs system),
 - network behavior (long-lived or interactive external connections),
 - and binary characteristics (location, masquerading or generic names that are not standard OS components).
-- IMPORTANT: Be sure to analyze all files related to any unauthorized remote access services.
+- IMPORTANT: Be sure to analyze all files related to any unauthorized remote access services, especially trace files.
 
 Do not assume legitimacy based solely on software type. 
 Any persistent component that enables interactive or remote control must be considered unauthorized unless explicit authorization is identified.
