@@ -81,7 +81,7 @@ Eliminate capabilities that enable:
 
 Investigation approach:
 Examine authentication controls AND administrative group membership on all user accounts to identify:
-- Accounts with administrative privileges not on the Authorized Acounts list
+- Accounts with administrative privileges not on the Authorized Accounts list
 - Accounts that can authenticate without credentials
 - Accounts where credentials do not meet strength requirements
 - Accounts where credentials have no expiration or rotation requirements
@@ -121,19 +121,21 @@ Investigation approach:
 Action: Activate protective network boundaries and enforce restrictive defaults.
 
 ### SECTION 4:  Antivirus Tool Settings
+
 Identify and eliminate configurations that allow attackers to:
 1. Persist malware undetected on the file system
-2. Disable or weaken security protections without protection
+2. Disable or weaken security protections without authorization
+
+Check whether active monitoring is enabled, protections are resistant to unauthorized 
+modification, and file system locations are not exempted from scanning.
+
+Focus on: exclusions that create safe havens, protections that can be 
+disabled without authorization, and coverage gaps in monitored locations.
 
 For each capability found:
 - What configuration enables it?
 - How does it weaken defense?
 - How should it be remediated?
-
-Focus on: exclusions that create safe havens, protections that can be 
-disabled without authorization, and coverage gaps in monitored locations.
-
-OUTPUT: Document what capabilities were eliminated and how system state was hardened.
 
 ###  SECTION 5: Dangerous Privilege Assignment Remediation
 Identify and remediate security-relevant user rights and privilege assignments 
