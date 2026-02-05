@@ -55,19 +55,22 @@ jamie casey riley sam drew cameron avery parker quinn logan ryan blake jesse dev
 Address all sections below. Sections are independent - tackle efficiently.
 Prioritize active threats and quick wins.
 
-### SECTION 1: ACTIVE THREAT CONTAINMENT
-
+### SECTION 1: ACTIVE AND DORMANT THREAT CONTAINMENT
 Eliminate capabilities that enable:
 - Real-time remote control or command execution from external sources
 - Extraction of credentials from system memory
 - Unauthorized code execution from non-system locations
 
 Investigation approach:
-- Focus on currently running processes and active network connections
-- Look for execution from user-writable directories or temporary locations
-- Identify processes accessing sensitive system components without legitimate purpose
+- Identify currently running processes that enable these capabilities
+- Identify executables present in non-system locations that could enable these capabilities
+- Common staging locations: C:\Users\[username]\Desktop, C:\Users\[username]\Downloads, 
+  C:\Users\Public, C:\Temp, C:\ProgramData\[suspicious folders]
+- Look for executables, scripts, and tools that enable credential access, remote control, 
+  or privilege escalation
 
-Action: Terminate unauthorized processes and remove associated files.
+For active threats: Terminate processes immediately.
+For dormant threats: Remove executables and associated files.
 
 
 ### SECTION 2: AUTHENTICATION BYPASS ELIMINATION
