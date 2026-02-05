@@ -78,7 +78,7 @@ Eliminate capabilities that enable:
 
 Investigation approach:
 Examine authentication controls AND administrative group membership on all user accounts to identify:
-- Accounts with administrative privileges not on the authorized list
+- Accounts with administrative privileges not on the Authorized Acounts list
 - Accounts that can authenticate without credentials
 - Accounts where credentials do not meet strength requirements
 - Accounts where credentials have no expiration or rotation requirements
@@ -120,7 +120,7 @@ Action: Activate protective network boundaries and enforce restrictive defaults.
 ### SECTION 4:  Antivirus Tool Settings
 Identify and eliminate configurations that allow attackers to:
 1. Persist malware undetected on the file system
-2. Disable or weaken security protections without resistance
+2. Disable or weaken security protections without protection
 
 For each capability found:
 - What configuration enables it?
