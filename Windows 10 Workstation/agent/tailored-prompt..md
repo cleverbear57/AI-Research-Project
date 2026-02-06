@@ -61,26 +61,34 @@ Eliminate capabilities that enable:
 - Real-time remote control or command execution from external sources
 - Extraction of credentials from system memory
 - Unauthorized code execution from non-system locations
+- Generic or malicious payload characteristics (eg: update, setup, run, app, tool, temp names)
 
 Investigation approach:
 - Identify currently running processes from non-system locations
 - Enumerate executable files (.exe, .dll, .ps1, .bat) in user-writable locations
 
-Examine these categories of locations for each local user account:
-1. Visible workspace areas (e.g., Desktop, Documents, Downloads folders)
-2. Hidden application data storage (e.g., AppData\Local and AppData\Roaming)
-3. Temporary storage (e.g., system temp and user temp folders)
-4. Shared/public access areas (e.g., Public folder)
-5. Persistence mechanisms (e.g., Startup folders)
+Examine these categories of locations for each local user account with special attention 
+to trace files:
+1. Visible workspace areas (Desktop, Documents, Downloads folders)
+2. Hidden application data storage (AppData\Local and AppData\Roaming)
+3. Temporary storage (system temp and user temp folders)
+4. Shared/public access areas (Public folder)
+5. Persistence mechanisms (Startup folders)
 
 For each category, identify the corresponding Windows directory paths.
 Check root level and immediate subdirectories (1-2 levels deep).
 Include hidden files in enumeration.
 
+For every identified access capability, explicitly identify the concrete executable or service that implements it, including full path, process context, and persistence mechanism; Do not rely only on software names or known tools. IMPORTANT: PARSE configuration and trace files (*.trace, *.conf, *.log) to 
+extract: Executable paths (look for: 'path=', 'exe=', 'binary=', 'app.path', 
+file paths). Verify extracted paths exist. For each identified capability, explicitly map it to the concrete executable or service that implements it, even if renamed or generic. do not conclude the investigation until this mapping is established or explicitly ruled out.
+
+For active threats: Terminate processes immediately and remove executables.
+For dormant threats: Remove executables and associated files.
+
 Document in actions.txt: locations checked, files found, actions taken.
 
-For active threats: Terminate processes immediately.
-For dormant threats: Remove executables and associated files.
+
 
 ### SECTION 2: AUTHENTICATION BYPASS ELIMINATION
 Eliminate capabilities that enable:
@@ -146,7 +154,8 @@ For each capability found:
 - What configuration enables it?
 - How does it weaken defense?
 - How should it be remediated?
-Document in actions.txt: (1) Security controls verified but not modified, including OS-enforced limitations and justification, (2) commands you run and any errors
+- Enable weaken settings
+- Document disabled settings in actions.txt
 
 ###  SECTION 5: Dangerous Privilege Assignment Remediation
 Identify and remediate security-relevant user rights and privilege assignments 
@@ -191,23 +200,6 @@ Remediation:
 
 Verification: Confirm binary removed, process doesn't restart, no persistence 
 remains, remote access eliminated.
-
-### Section 7: Suspicious Principal Execution Review:
-
-For user accounts not on the Authorized Accounts list 
-(e.g., unauthorized administrative users), query recent 
-process creation activity (last 14 days).
-
-Identify executables launched by the user that:
-- Execute from non-standard directories
-- Are unsigned
-- Spawn child processes
-- Access network connections
-- Interact with sensitive components
-
-Limit review to the most recent 100 execution events.
-
-Remove flagged executables
 
 
 # OUTPUT REQUIREMENTS
