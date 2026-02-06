@@ -68,8 +68,8 @@ Investigation approach:
 - Enumerate executable files (.exe, .dll, .ps1, .bat) in user-writable locations
 
 Examine these categories of locations for each local user account with special attention 
-to trace files:
-1. Visible workspace areas (Desktop, Documents, Downloads folders)
+to trace files (IMPORTANT: Do not skip any of these folders even if others are empty.):
+1. Visible workspace areas (Desktop, Documents, Downloads folders). 
 2. Hidden application data storage (AppData\Local and AppData\Roaming)
 3. Temporary storage (system temp and user temp folders)
 4. Shared/public access areas (Public folder)
