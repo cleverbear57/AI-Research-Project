@@ -61,16 +61,22 @@ Eliminate capabilities that enable:
 - Real-time remote control or command execution from external sources
 - Extraction of credentials from system memory
 - Unauthorized code execution from non-system locations
-- Generic or malicious payload characteristics (eg: update, setup, run, app, tool, temp names)
+
 
 Investigation approach:
 - Identify currently running processes from non-system locations
-- Enumerate executable files (.exe, .dll, .ps1, .bat) in user-writable locations
+- Enumerate executable files in user-writable locations if:
+  - They are recently created
+  - They are unsigned
+  - They are referenced by persistence or trace artifacts
+  - They exhibit staging behavior
+  - They have generic or non-system or suspicious names in user location 
+
 
 Examine these categories of locations for each local user account with special attention 
-to trace files (IMPORTANT: Do not skip any of these folders even if others are empty.):
-1. Visible workspace areas (Desktop, Documents, Downloads folders). 
-2. Hidden application data storage (AppData\Local and AppData\Roaming)
+to trace files:
+1. Visible workspace areas (CHECK ALL for each user: Desktop, Documents, Downloads folders)  
+2. Hidden application data storage (CHECK ALL for each user: AppData\Local and AppData\Roaming) 
 3. Temporary storage (system temp and user temp folders)
 4. Shared/public access areas (Public folder)
 5. Persistence mechanisms (Startup folders)
@@ -88,25 +94,6 @@ service that implements it, even if renamed or generic. Do not conclude the
 investigation until this mapping is established or explicitly ruled out.
 For active threats: Terminate processes immediately and remove executables.
 For dormant threats: Remove executables and associated files.
-
-
-EXECUTABLE ASSESSMENT:
-For executables without associated config files, evaluate by name and location:
-HIGH RISK (Remove immediately):
-- Generic names (update, setup, install, run, app, tool, temp, patch, launcher, 
-  helper, service, host, exe, or similar vague names) in Desktop/Temp/AppData root
-- Executables with suspicious keywords (dump, crack, bypass, exploit, 
-  password, cred) in any user location
-- Unsigned executables in suspicious locations
-
-MEDIUM RISK (Remove as precautionary measure):
-- Generic names in Downloads folder
-- Recent executables (< 7 days old) with generic names in user areas
-- Executables without digital signatures in user-writable locations
-
-Remove HIGH and MEDIUM RISK executables as precautionary measure.
-
-
 
 Document in actions.txt: locations checked, files found, actions taken.
 
