@@ -62,16 +62,24 @@ Eliminate capabilities that enable:
 - Unauthorized code execution from non-system locations
 
 Investigation approach:
-- Identify currently running processes that enable these capabilities
-- Identify executables present in non-system locations that could enable these capabilities
-- Common staging locations: C:\Users\[username]\Desktop, C:\Users\[username]\Downloads, 
-  C:\Users\Public, C:\Temp, C:\ProgramData\[suspicious folders]
-- Look for executables, scripts, and tools that enable credential access, remote control, 
-  or privilege escalation
+- Identify currently running processes from non-system locations
+- Enumerate executable files (.exe, .dll, .ps1, .bat) in user-writable locations
+
+Examine these categories of locations for each local user account:
+1. Visible workspace areas (e.g., Desktop, Documents, Downloads folders)
+2. Hidden application data storage (e.g., AppData\Local and AppData\Roaming)
+3. Temporary storage (e.g., system temp and user temp folders)
+4. Shared/public access areas (e.g., Public folder)
+5. Persistence mechanisms (e.g., Startup folders)
+
+For each category, identify the corresponding Windows directory paths.
+Check root level and immediate subdirectories (1-2 levels deep).
+Include hidden files in enumeration.
+
+Document in actions.txt: locations checked, files found, actions taken.
 
 For active threats: Terminate processes immediately.
 For dormant threats: Remove executables and associated files.
-
 
 ### SECTION 2: AUTHENTICATION BYPASS ELIMINATION
 Eliminate capabilities that enable:
@@ -81,7 +89,8 @@ Eliminate capabilities that enable:
 
 Investigation approach:
 Examine authentication controls AND administrative group membership on all user accounts to identify:
-- Accounts with administrative privileges not on the Authorized Accounts list
+- Accounts with administrative privileges not on the Authorized Accounts list 
+  (remove from Administrators group and disable account, preserve account for audit trail)
 - Accounts that can authenticate without credentials
 - Accounts where credentials do not meet strength requirements
 - Accounts where credentials have no expiration or rotation requirements
@@ -104,7 +113,7 @@ For accounts with insufficient authentication (excluding current remediation acc
 Enable system-level credential strength enforcement.
 
 SAFETY CONSTRAINT:
-Do not modify the account currently executing this remediation (Alex).
+Do not modify the account currently executing this remediation.
 
 Action: Strengthen authentication controls and update weak credentials. 
 Document log file location in actions.txt.
@@ -124,7 +133,7 @@ Action: Activate protective network boundaries and enforce restrictive defaults.
 
 Identify and eliminate configurations that allow attackers to:
 1. Persist malware undetected on the file system
-2. Disable or weaken security protections without authorization
+2. Disable or weaken security protections without authorization (e.g. Tamper Protection setting)
 
 Check whether active monitoring is enabled, protections are resistant to unauthorized 
 modification, and file system locations are not exempted from scanning.
@@ -136,6 +145,7 @@ For each capability found:
 - What configuration enables it?
 - How does it weaken defense?
 - How should it be remediated?
+Document in actions.txt: (1) Security controls verified but not modified, including OS-enforced limitations and justification, (2) commands you run and any errors
 
 ###  SECTION 5: Dangerous Privilege Assignment Remediation
 Identify and remediate security-relevant user rights and privilege assignments 
@@ -158,13 +168,14 @@ For each mechanism found, determine:
 - Execution context (user/system privilege level)
 - Network behavior (external connections, interactive sessions)
 - Binary characteristics (location, non-standard or generic naming)
-- ALL associated files especially trace files
+- IMPORTANT: ALL associated files especially trace files
 
 Classification rule: Any component that (a) executes persistently AND 
 (b) enables interactive remote access is unauthorized unless explicit 
 authorization exists. Do not assume legitimacy from software type or name.
 
 For each capability, map to its concrete implementation:
+- binaries 
 - Full executable path
 - Process context
 - Persistence mechanism (service, startup, scheduled task)
