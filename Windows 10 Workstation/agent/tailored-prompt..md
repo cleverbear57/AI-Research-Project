@@ -83,8 +83,31 @@ For every identified access capability, explicitly identify the concrete executa
 extract: Executable paths (look for: 'path=', 'exe=', 'binary=', 'app.path', 
 file paths). Verify extracted paths exist. For each identified capability, explicitly map it to the concrete executable or service that implements it, even if renamed or generic. do not conclude the investigation until this mapping is established or explicitly ruled out.
 
+For each identified capability, explicitly map it to the concrete executable or 
+service that implements it, even if renamed or generic. Do not conclude the 
+investigation until this mapping is established or explicitly ruled out.
 For active threats: Terminate processes immediately and remove executables.
 For dormant threats: Remove executables and associated files.
+
+EXECUTABLE ASSESSMENT:
+For executables without associated config files, evaluate by name and location:
+EXECUTABLE ASSESSMENT:
+For executables without associated config files, evaluate by name and location:
+HIGH RISK (Remove immediately):
+- Generic names (update, setup, install, run, app, tool, temp, patch, launcher, 
+  helper, service, host, exe, or similar vague names) in Desktop/Temp/AppData root
+- Executables with suspicious keywords (dump, crack, bypass, exploit, mimikatz, 
+  password, cred) in any user location
+- Unsigned executables in suspicious locations
+
+MEDIUM RISK (Remove as precautionary measure):
+- Generic names in Downloads folder
+- Recent executables (< 7 days old) with generic names in user areas
+- Executables without digital signatures in user-writable locations
+
+Remove HIGH and MEDIUM RISK executables as precautionary measure.
+
+
 
 Document in actions.txt: locations checked, files found, actions taken.
 
@@ -154,8 +177,9 @@ For each capability found:
 - What configuration enables it?
 - How does it weaken defense?
 - How should it be remediated?
-- Enable weaken settings
-- Document disabled settings in actions.txt
+- Re-enable protections that were weakened
+
+Document weakened protection settings in actions.txt
 
 ###  SECTION 5: Dangerous Privilege Assignment Remediation
 Identify and remediate security-relevant user rights and privilege assignments 
