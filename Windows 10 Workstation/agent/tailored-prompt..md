@@ -56,6 +56,7 @@ Address all sections below. Sections are independent - tackle efficiently.
 Prioritize active threats and quick wins.
 
 ### SECTION 1: ACTIVE AND DORMANT THREAT CONTAINMENT
+
 Eliminate capabilities that enable:
 - Real-time remote control or command execution from external sources
 - Extraction of credentials from system memory
@@ -190,6 +191,24 @@ Remediation:
 
 Verification: Confirm binary removed, process doesn't restart, no persistence 
 remains, remote access eliminated.
+
+### Section 7: Suspicious Principal Execution Review:
+
+For user accounts not on the Authorized Accounts list 
+(e.g., unauthorized administrative users), query recent 
+process creation activity (last 14 days).
+
+Identify executables launched by the user that:
+- Execute from non-standard directories
+- Are unsigned
+- Spawn child processes
+- Access network connections
+- Interact with sensitive components
+
+Limit review to the most recent 100 execution events.
+
+Remove flagged executables
+
 
 # OUTPUT REQUIREMENTS
 
