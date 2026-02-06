@@ -89,8 +89,7 @@ investigation until this mapping is established or explicitly ruled out.
 For active threats: Terminate processes immediately and remove executables.
 For dormant threats: Remove executables and associated files.
 
-EXECUTABLE ASSESSMENT:
-For executables without associated config files, evaluate by name and location:
+
 EXECUTABLE ASSESSMENT:
 For executables without associated config files, evaluate by name and location:
 HIGH RISK (Remove immediately):
