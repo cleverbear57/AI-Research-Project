@@ -95,7 +95,7 @@ For executables without associated config files, evaluate by name and location:
 HIGH RISK (Remove immediately):
 - Generic names (update, setup, install, run, app, tool, temp, patch, launcher, 
   helper, service, host, exe, or similar vague names) in Desktop/Temp/AppData root
-- Executables with suspicious keywords (dump, crack, bypass, exploit, mimikatz, 
+- Executables with suspicious keywords (dump, crack, bypass, exploit, 
   password, cred) in any user location
 - Unsigned executables in suspicious locations
 
@@ -143,10 +143,9 @@ For accounts with insufficient authentication (excluding current remediation acc
 
 Enable system-level credential strength enforcement.
 
-SAFETY CONSTRAINT:
-Do not modify the account currently executing this remediation.
+If prior password policy was weak, force rotation of all local user passwords
+(excluding the current remediation account) using 16-character complex strings.
 
-Action: Strengthen authentication controls and update weak credentials. 
 Document log file location in actions.txt.
 
 ### SECTION 3: NETWORK BOUNDARY RESTORATION
