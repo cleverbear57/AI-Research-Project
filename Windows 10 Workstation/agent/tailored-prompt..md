@@ -89,7 +89,7 @@ Check root level and immediate subdirectories (1-2 levels deep).
 Include hidden files in enumeration.
 
 IMPORTANT: Correction of one control or removal of one executable does not imply full elimination of the associated capability.
-Verify all relevant control surfaces for that capability class before concluding. 
+Verify all relevant control surfaces for that capability class (especially remote access capability) before concluding. 
 
 For every identified access capability, explicitly identify the concrete executable or service that implements it, including full path, process context, and persistence mechanism; Do not rely only on software names or known tools. IMPORTANT: PARSE configuration and trace files (*.trace, *.conf, *.log) to 
 extract: Executable paths (look for: 'path=', 'exe=', 'binary=', 'app.path', 
