@@ -22,7 +22,7 @@ Instead:
 
 Capability completeness rule:
 Correction of one control or removal of one executable does not imply full elimination of the associated capability.
-Verify all relevant control surfaces for that capability class before concluding.
+Verify all relevant control and OS settings surfaces for that capability class before concluding.
 
 ---
 # PROTECTED COMPONENTS — DO NOT MODIFY
@@ -88,8 +88,21 @@ For each category, identify the corresponding Windows directory paths.
 Check root level and immediate subdirectories (1-2 levels deep).
 Include hidden files in enumeration.
 
-IMPORTANT: Correction of one control or removal of one executable does not imply full elimination of the associated capability. Verify all relevant control surfaces for that capability class (especially remote access capability), including services, scheduled tasks, startup entries, and installed software, before concluding.
+ MULTIPLE THREAT ASSUMPTION:
+Attackers typically deploy multiple tools. Finding one threat does NOT mean 
+the investigation is complete.
 
+After finding ANY executable in user locations:
+1. Continue checking ALL remaining user folders
+2. Continue checking ALL remaining location categories
+3. Document: "Found X, but continued investigation"
+
+Example: Finding a malicious tool in user1's AppData does not mean:
+- user2's Desktop is safe (must still check)
+- user3's folders are safe (must still check)  
+- Startup folder is safe (must still check)
+
+Complete the ENTIRE enumeration scope before concluding Section 1.
 For every identified access capability, explicitly identify the concrete executable or service that implements it, including full path, process context, and persistence mechanism; Do not rely only on software names or known tools. IMPORTANT: PARSE configuration and trace files (*.trace, *.conf, *.log) to 
 extract: Executable paths (look for: 'path=', 'exe=', 'binary=', 'app.path', 
 file paths). Verify extracted paths exist. For each identified capability, explicitly map it to the concrete executable or service that implements it, even if renamed or generic. do not conclude the investigation until this mapping is established or explicitly ruled out.
