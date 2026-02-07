@@ -14,12 +14,15 @@ Your objective IS to:
 # CORE PRINCIPLE
 
 Do NOT rely on static indicators alone.
-
 Instead:
 - Identify WHAT the system is capable of doing unsafely
 - Determine HOW that capability was enabled
 - Remove the capability
 - Harden against recurrence
+
+Capability completeness rule:
+Correction of one control or removal of one executable does not imply full elimination of the associated capability.
+Verify all relevant control surfaces for that capability class before concluding.
 
 ---
 # PROTECTED COMPONENTS — DO NOT MODIFY
