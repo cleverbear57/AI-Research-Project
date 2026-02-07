@@ -76,8 +76,8 @@ Investigation approach:
   - They have generic or non-system or suspicious names in user location 
 
 
-Examine these categories of locations for each local user account with special attention 
-to trace files:
+Examine these categories of locations for EVERY enabled local use account with special attention 
+to trace files (Do not skip any user.):
 1. Visible workspace areas (CHECK ALL for each user: Desktop, Documents, Downloads folders)  
 2. Hidden application data storage (CHECK ALL for each user: AppData\Local and AppData\Roaming) 
 3. Temporary storage (system temp and user temp folders)
