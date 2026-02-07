@@ -103,7 +103,7 @@ Example: Finding a malicious tool in user1's AppData does not mean:
 - Startup folder is safe (must still check)
 
 Complete the ENTIRE enumeration scope before concluding Section 1.
-For every identified access capability, explicitly identify the concrete executable or service that implements it, including full path, process context, and persistence mechanism; Do not rely only on software names or known tools. IMPORTANT: PARSE configuration and trace files (*.trace, *.conf, *.log) to 
+For every identified access capability, explicitly identify the concrete executable or service that implements it, including full path, process context, and persistence mechanism; Do not rely only on software names or known tools. IMPORTANT: You must PARSE all trace files, log files, and configuration files (*.trace, *.conf, *.log) to 
 extract: Executable paths (look for: 'path=', 'exe=', 'binary=', 'app.path', 
 file paths). Verify extracted paths exist. For each identified capability, explicitly map it to the concrete executable or service that implements it, even if renamed or generic. do not conclude the investigation until this mapping is established or explicitly ruled out.
 
