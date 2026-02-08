@@ -225,7 +225,7 @@ Scan execution protocol:
 Rationale: Any gap in Defender protection creates an opportunity window for 
 malware. A full scan verifies no malware entered during the protection gap.
 
-IMPORTANT:- At conclusion of ALL remediation, check scan results:
+# IMPORTANT:- At conclusion of ALL remediation, check scan results:
   * Get-MpThreatDetection
   * If threats found, remediate them
   * If scan incomplete, document for manual review
