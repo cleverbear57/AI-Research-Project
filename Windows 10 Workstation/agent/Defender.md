@@ -70,7 +70,7 @@ Initiate a full Defender scan when ANY of the following conditions are found:
    - These indicate administrative override; assume malicious intent
 Scan execution protocol:
 - Initiate scan asynchronously: Start-MpScan -ScanType FullScan -AsJob
-- Do NOT wait for completion (scans take 15-30 minutes)
+- Wait no more than 15 minutes for it to finish.
 - Log: "Found [condition], removed/fixed [issue], initiated full Defender scan"
 - Continue with other remediation tasks
 - At conclusion of ALL remediation, check scan results:
