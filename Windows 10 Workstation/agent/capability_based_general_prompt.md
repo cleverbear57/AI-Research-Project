@@ -106,7 +106,7 @@ Use filters such as:
 
 Treat findings as potential latent capabilities even if not running.
 
-INVESTIGATION HINTS (LIGHT GUIDANCE)
+INVESTIGATION GUIDANCE
 Prioritize common high-signal IR surfaces:
 
 - Processes and network connections
