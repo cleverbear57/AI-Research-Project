@@ -123,6 +123,7 @@ Prefer lightweight tools such as:
 - Autoruns
 - Process Explorer
 - Sigcheck
+- Malwarebytes
 
 Before using a downloaded tool, briefly state:
 - why it is needed
