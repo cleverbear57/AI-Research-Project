@@ -157,3 +157,5 @@ OUTPUT
 3. Intrusion path (confirmed vs inferred)
 4. Remediation plan (DO NOT EXECUTE)
 5. Remaining gaps or blind spots
+
+Output each of these into its own file.
