@@ -106,14 +106,17 @@ Use filters such as:
 
 Treat findings as potential latent capabilities even if not running.
 
-INVESTIGATION STRATEGY
+INVESTIGATION HINTS (LIGHT GUIDANCE)
+Prioritize common high-signal IR surfaces:
 
-- Start with execution surfaces (processes, services, tasks, startup, connections)
-- Correlate findings to files, accounts, and configurations
-- Identify what unsafe capabilities the system enables
-- If a capability is missing or weakly supported, expand investigation using anomaly-based search in:
-  - high-risk user-writable locations
-  - and, if needed, trusted system locations using filtered reasoning
+- Processes and network connections
+- Services, scheduled tasks, startup, and Run keys
+- Local users, groups, and privilege assignments
+- Security controls (Defender, firewall, exclusions)
+- Recently created or modified files
+- Executables in user-writable directories (AppData, Temp, ProgramData)
+
+Use these as starting points, but adapt based on findings.
 
 EXTERNAL TOOL RULE
 
