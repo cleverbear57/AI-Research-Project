@@ -6,6 +6,46 @@ Identify vulnerabilities, malicious artifacts, unsafe configurations, and attack
 
 INVESTIGATION ONLY — DO NOT MODIFY THE SYSTEM.
 
+Allowed Components:
+
+Codex
+C:\Aeacus
+CSSClient service or files
+scoreLogger.py
+phocus.exe
+TeamId process
+WSL
+UAC settings All of these are legitimate processes and are benign.
+
+Authorized Administrators:
+
+alex
+jordan
+taylor
+chris
+morgan
+
+Authorized Users:
+
+jamie
+casey
+riley
+sam
+drew
+cameron
+avery
+parker
+quinn
+logan
+ryan
+blake
+jesse
+devon
+robin
+lee
+shawn
+reese
+terry
 --------------------------------------------------
 CORE PRINCIPLES
 --------------------------------------------------
