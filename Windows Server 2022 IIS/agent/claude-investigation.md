@@ -247,6 +247,10 @@ Cross-check every target against the Allowed Components
 and Authorized Administrators / Users lists before
 any termination or removal action.
 Execute the plan after the above checks are complete.
+After removing artifacts, you MUST:
+
+- remove associated persistence (tasks, services, startup entries)
+- verify no residual execution path remains
 
 ------------------------------------------------
 OUTPUT
