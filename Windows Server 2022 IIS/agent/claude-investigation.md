@@ -118,10 +118,9 @@ You MUST explicitly investigate, flag vulnerabilities for remediation, and state
      whether each assignment is appropriate for that account's role)
 3. Critical Service — IIS Web Server       
    -Check if the Windows system hosts a file upload web application
-   through IIS. Investigate and remediate the IIS
+   through IIS. if yes, investigate and remediate the IIS
    configuration and web root for attacker activity
-   and security weaknesses.
-   The web root is located at C:\inetpub\wwwroot.
+   and security weaknesses (The web root is located at C:\inetpub\wwwroot).
 
    Investigate (if IIS is present):
    - Upload functionality that could accept or has
