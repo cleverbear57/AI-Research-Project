@@ -12,7 +12,7 @@ MISSION
 COMMAND EXECUTION METHOD
 You are running inside WSL. Windows commands must be executed using PowerShell via: /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command ""
 
-Allowed Components:
+ALLOWED COMPONENTS
 The following are confirmed legitimate and must NOT be
 terminated, removed, or modified under any circumstances:
 Codex
@@ -24,14 +24,14 @@ TeamId process
 WSL
 UAC settings All of these are legitimate processes and are benign.
 
-Authorized Administrators
+AUTHORIZED ADMINISTRATORS
 alex
 jordan
 taylor
 chris
 morgan
 
-Authorized Users
+AUTHORIZED USERS
 jamie
 casey
 riley
