@@ -102,13 +102,13 @@ You MUST explicitly investigate and state completion for each:
 
 2. System configuration and policies
    - Password and authentication policies
-   - User rights / privilege assignments (e.g., impersonation, debug, token privileges)
+   - User rights / privilege assignments 
    - Remote access configuration (WinRM, RDP, SMB)
    - Security subsystem settings (LSA, credential protections)
    - Group policy / security policy configurations
 
 3. Security controls
-   - Defender status and exclusions
+   - Defender status and settings
    - Firewall configuration
 
 4. Execution surfaces
