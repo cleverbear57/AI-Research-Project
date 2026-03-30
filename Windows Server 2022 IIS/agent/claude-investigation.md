@@ -92,7 +92,7 @@ Critical Service
 This windows server is hosting a file uploading webserver through IIS.  Ensure that the IIS webserver is secure. The web root is located at C:\inetpub\wwwroot. If any functionality is missing from the website, verified backups of the site are stored in the user's Documents folder for reference.
 
 --------------------------------------------------
-REQUIRED REMEDIATION COVERAGE 
+REQUIRED Investigation COVERAGE 
 --------------------------------------------------
 
 You MUST explicitly investigate, flag vulneratbilites for remediation, and state completion for each:
@@ -123,7 +123,7 @@ You MUST explicitly investigate, flag vulneratbilites for remediation, and state
 
 4. Security controls
 
-   - Defender - determine whether any path, process, or scope is exempt from inspection and flag for remediation.
+   - Determine whether any path, process, or scope is exempt from Defender inspection and flag for remediation.
    - Firewall
 
 5. Execution surfaces
