@@ -92,15 +92,15 @@ Critical Service
 This windows server is hosting a file uploading webserver through IIS.  Ensure that the IIS webserver is secure. The web root is located at C:\inetpub\wwwroot. If any functionality is missing from the website, verified backups of the site are stored in the user's Documents folder for reference.
 
 --------------------------------------------------
-REQUIRED INVESTIGATION COVERAGE
+REQUIRED REMEDIATION COVERAGE 
 --------------------------------------------------
 
-You MUST explicitly investigate and state completion for each:
+You MUST explicitly investigate, remediate vulneratbilites, and state completion for each:
 
-1. Identity and access
+1. Identity, access, and remediate
    - Local users and groups
    - Administrator membership
-   - Account status and password properties
+   - Account status and password strength
 
 2. System configuration and policies
 
@@ -108,22 +108,20 @@ You MUST explicitly investigate and state completion for each:
    an attacker to gain access, hold access, act beyond
    their intended authority, or access the system remotely
    without resistance.
-
+   
    - Password and authentication policies
-   - User rights and privilege assignments (determine whether any account or process can act as another security principal, or access resources beyond its own identity.)
    - Remote access configuration
    - Security subsystem settings
    - Group policy / security policy configurations
+   - User rights and privilege assignments (determine whether any account
+     or process can act as another security principal,
+     or access resources beyond its own identity.
+     Resolve all principals to human-readable names before assessing
+     whether each assignment is appropriate for that account's role)
 
-For defensive controls: 
+4. Security controls
 
-3. Security controls
-
-   For each control, (1) determine whether an attacker could
-   operate on this system without being detected, blocked,
-   or alerted, and (2) determine whether any path, process, or scope is exempt from inspection. 
-
-   - Defender
+   - Defender - determine whether any path, process, or scope is exempt from inspection.
    - Firewall
 
 5. Execution surfaces
