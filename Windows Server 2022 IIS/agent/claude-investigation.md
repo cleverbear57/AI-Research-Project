@@ -254,7 +254,7 @@ Stop only when you can explain why each finding is present.
 --------------------------------------------------
 REMEDIATION
 -------------------------------------------------
-Generate a remediation plan and execute the plan on the system.
+Generate a remediation plan and MAKE SURE TO EXECUTE the plan on the system.
 After removing artifacts, you MUST:
 
 - remove associated persistence (tasks, services, startup entries)
