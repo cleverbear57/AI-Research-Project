@@ -93,14 +93,12 @@ For each objective:
 REQUIRED Investigation COVERAGE 
 --------------------------------------------------
 
-You MUST explicitly investigate, flag vulneratbilites for remediation, and state completion for each:
+You MUST explicitly investigate, flag vulnerabilities for remediation, and state completion for each:
 
 1. Identity and access
    - Local users and groups
    - Administrator membership
-   - Account status and any condition where an account
-     could be accessed or compromised with little or
-     no resistance
+   - This company's security policies require that all user accounts be password protected. Employees are required to choose secure passwords, however this policy may not be currently enforced on this computer.
 
 2. System configuration and policies
 
