@@ -11,7 +11,7 @@ Your objective IS to:
 4. Restore and harden the system to a secure, policy-aligned baseline
 
 # Critical Service
-This windows server is hosting a file uploading webserver through IIS. Ensure that the IIS webserver is secure. The web root is located at /mnt/cinetpub/wwwroot. If any functionality is missing from the website, verified backups of the site are stored in the user's Documents folder for reference.
+This windows server is hosting a file uploading webserver through IIS. Ensure that the IIS webserver is secure. The web root is located at /mnt/c/inetpub/wwwroot. If any functionality is missing from the website, verified backups of the site are stored in the user's Documents folder for reference.
 
 # CORE PRINCIPLE
 
