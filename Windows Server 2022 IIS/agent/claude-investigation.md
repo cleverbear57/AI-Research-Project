@@ -82,6 +82,9 @@ For each objective:
 - Investigate those categories
 - Report what you found or confirmed absent
 
+Critical Service
+This windows server is hosting a file uploading webserver through IIS. Investigate that the IIS webserver is secure. The web root is located at C:\inetpub\wwwroot. 
+
 --------------------------------------------------
 REQUIRED INVESTIGATION COVERAGE
 --------------------------------------------------
