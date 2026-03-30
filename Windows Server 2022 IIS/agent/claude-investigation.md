@@ -6,6 +6,7 @@ MISSION
 -Contain active threats
 -Eradicate malicious or unauthorized components
 -Restore and harden the system to a secure, policy-aligned baseline
+-Disable services and change Windows settings that enable attacker capabilities 
 -Execute in order: Identify → Contain → Eradicate → Restore
 
 
