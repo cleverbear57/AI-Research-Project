@@ -103,15 +103,26 @@ You MUST explicitly investigate and state completion for each:
    - Account status and password properties
 
 2. System configuration and policies
+
+   For each area, identify configurations that would allow
+   an attacker to gain access, hold access, act beyond
+   their intended authority, or access the system remotely
+   without resistance.
+
    - Password and authentication policies
-   - User rights / privilege assignments 
-   - Remote access configuration (WinRM, RDP, SMB)
-   - Security subsystem settings (LSA, credential protections)
+   - User rights and privilege assignments
+   - Remote access configuration
+   - Security subsystem settings
    - Group policy / security policy configurations
 
 3. Security controls
-   - Defender status and settings
-   - Firewall configuration
+
+   For each control, determine whether an attacker could
+   operate on this system without being detected, blocked,
+   or alerted — and what is responsible for that gap.
+
+   - Defender
+   - Firewall
 
 4. Execution surfaces
    - Running processes (with path and command line)
