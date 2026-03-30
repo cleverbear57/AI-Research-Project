@@ -149,38 +149,43 @@ or defender re-entry.
 
 6. High-risk file locations
 
-   SWEEP 1 — executables and scripts:
-   Perform ONE combined sweep using a concrete root
-   path and -Filter, not -Include with wildcard paths
-   (-Include with wildcard paths silently returns no
-   results in PowerShell):
+  SWEEP 1 — executables and scripts
 
-     Get-ChildItem -Path 'C:\Users','C:\ProgramData',
-       'C:\Windows\Temp'
-       -Recurse -Filter *.exe -ErrorAction SilentlyContinue
-     | Where-Object { $_.FullName -notmatch 'OneDrive|VS Code' }
-     | Sort-Object LastWriteTime -Descending
+Search for executables and scripts across all
+high-risk locations. Use -Filter with a concrete
+root path — not -Include with wildcard paths, as
+wildcard paths combined with -Include silently
+return no results in PowerShell.
 
-   Repeat separately with -Filter *.ps1 and -Filter *.py.
+For example:
+  Get-ChildItem -Path 'C:\Users','C:\ProgramData',
+    'C:\Windows\Temp'
+    -Recurse -Filter *.exe -ErrorAction SilentlyContinue
+  | Where-Object { $_.FullName -notmatch 'OneDrive|VS Code' }
+  | Sort-Object LastWriteTime -Descending
 
-   For each result, flag anything:
-   - Not belonging to a known application
-   - Created within the attacker activity window
-   - In a directory where executables are not expected
+Search for .exe, .ps1, and .py separately.
+Extend to additional paths if investigation leads
+there — the paths above are a starting point,
+not a boundary.
 
-   SWEEP 2 — unexpected application presence:
-   For each user's AppData, list top-level folders and
-   flag any that do not belong to a known Windows
-   component or legitimately installed application.
+SWEEP 2 — unexpected application presence
 
-   For each user's AppData, also inspect any available
-   shell or command history for evidence of attacker
-   activity on that account.
+For each user's AppData, list top-level folders and
+flag any that do not belong to a known Windows
+component or legitimately installed application.
 
-   Additionally, flag any executable or script found
-   in any directory where executables are not expected,
-   regardless of whether that path is listed above.
-  
+For each user's AppData, also inspect any available
+shell or command history for evidence of attacker
+activity on that account.
+
+FOR ALL FINDINGS IN BOTH SWEEPS — flag anything:
+- Not belonging to a known application
+- Created within the attacker activity window
+- Found in a directory where it is not expected
+
+The paths listed above are starting points, not
+boundaries. If a finding points elsewhere, follow it.
 
 --------------------------------------------------
 SERVICE AND PROCESS FUNCTIONAL ANALYSIS
