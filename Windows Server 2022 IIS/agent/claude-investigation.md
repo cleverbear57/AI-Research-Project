@@ -123,41 +123,24 @@ You MUST explicitly investigate, flag vulnerabilities for remediation, and state
      or access resources beyond its own identity.
      Resolve all principals to human-readable names before assessing
      whether each assignment is appropriate for that account's role)
-3. Critical Service — IIS Web Server       
-   -Check if the Windows system hosts a file upload web application
-   through IIS. if yes, investigate and remediate the IIS
-   configuration and web root for attacker activity
-   and security weaknesses (The web root is located at C:\inetpub\wwwroot).
 
-   Investigate (if IIS is present):
-   - Upload functionality that could accept or has
-     accepted executable content
-   - Script files in unexpected locations or recently
-     modified without a legitimate explanation
-   - IIS configuration that exposes writable directories
-     as web-accessible
-   - Evidence of webshell deployment or defacement
-   - IIS logs for evidence of exploitation
-   If specific web root files are confirmed tampered
-   or missing, verified backups exist in the current
-   user's Documents folder.
 
-4. Security controls
+3. Security controls
 
    - Defender (Determine whether any path, process, or scope is exempt from Defender inspection and flag for remediation.)
    - Firewall
 
-5. Execution surfaces
+4. Execution surfaces
    - Running processes (with path and command line)
    - Services (ImagePath, account context, start mode)
    - Network connections (listening and established)
 
-6. Persistence mechanisms
+5. Persistence mechanisms
    - Scheduled tasks
    - Registry Run / RunOnce keys
    - Startup folders (ALL users + ProgramData)
 
-7. High-risk file locations
+6. High-risk file locations
 
    For ALL user profiles simultaneously (not per-user),
    perform a single recursive sweep for executables and
