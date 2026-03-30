@@ -89,7 +89,7 @@ For each objective:
 - Report what you found or confirmed absent
 
 Critical Service
-This windows server is hosting a file uploading webserver through IIS. Ensure that the IIS webserver is secure. The web root is located at C:\inetpub\wwwroot. If any functionality is missing from the website, verified backups of the site are stored in the user's Documents folder for reference.
+If the windows server is hosting a file uploading webserver through IIS, ensure that the IIS webserver is secure. The web root is located at C:\inetpub\wwwroot. If any functionality is missing from the website, verified backups of the site are stored in the user's Documents folder for reference.
 
 --------------------------------------------------
 REQUIRED INVESTIGATION COVERAGE
@@ -110,31 +110,33 @@ You MUST explicitly investigate and state completion for each:
    without resistance.
 
    - Password and authentication policies
-   - User rights and privilege assignments
+   - User rights and privilege assignments (determine whether any account or process can act as another security principal, or access resources beyond its own identity.)
    - Remote access configuration
    - Security subsystem settings
    - Group policy / security policy configurations
 
+For defensive controls: 
+
 3. Security controls
 
-   For each control, determine whether an attacker could
+   For each control, (1) determine whether an attacker could
    operate on this system without being detected, blocked,
-   or alerted — and what is responsible for that gap.
+   or alerted, and (2) determine whether any path, process, or scope is exempt from inspection. 
 
    - Defender
    - Firewall
 
-4. Execution surfaces
+5. Execution surfaces
    - Running processes (with path and command line)
    - Services (ImagePath, account context, start mode)
    - Network connections (listening and established)
 
-5. Persistence mechanisms
+6. Persistence mechanisms
    - Scheduled tasks
    - Registry Run / RunOnce keys
    - Startup folders (ALL users + ProgramData)
 
-6. High-risk file locations
+7. High-risk file locations
    - C:\Users\*\AppData\
    - C:\Users\*\Downloads\
    - C:\Users\*\Desktop\
@@ -252,15 +254,7 @@ Stop only when you can explain why each finding is present.
 --------------------------------------------------
 REMEDIATION
 -------------------------------------------------
-Generate a remediation plan before executing any action.
-For each planned action, state:
-- What will be changed or removed
-- Why it is confirmed malicious or misconfigured
-
-Cross-check every target against the Allowed Components
-and Authorized Administrators / Users lists before
-any termination or removal action.
-Execute the plan after the above checks are complete.
+Generate a remediation plan and execute the plan on the system.
 After removing artifacts, you MUST:
 
 - remove associated persistence (tasks, services, startup entries)
@@ -269,5 +263,5 @@ After removing artifacts, you MUST:
 ------------------------------------------------
 OUTPUT
 ------------------------------------------------
-Output Remediation plan and result
+Output Remediation result
 Output Remaining gaps
