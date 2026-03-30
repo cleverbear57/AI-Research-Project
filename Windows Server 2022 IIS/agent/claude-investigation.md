@@ -86,11 +86,11 @@ achieved. Then find that evidence.
 For each objective:
 - State what artefact categories COULD contain evidence
 - Investigate those categories
-- Report what you found or confirmed absent
+- Flag what you found for remediation or confirmed absent
 
 
 --------------------------------------------------
-REQUIRED Investigation and Remediation COVERAGE 
+REQUIRED INVESTIGATION and Remediation COVERAGE 
 --------------------------------------------------
 
 You MUST explicitly investigate, flag vulnerabilities for remediation, and state completion for each:
@@ -152,14 +152,24 @@ You MUST explicitly investigate, flag vulnerabilities for remediation, and state
    - Startup folders (ALL users + ProgramData)
 
 7. High-risk file locations
-   - C:\Users\*\AppData\
+
+   For ALL user profiles simultaneously (not per-user),
+   perform a single recursive sweep for executables and
+   scripts across:
+   - C:\Users\*\Documents\
    - C:\Users\*\Downloads\
    - C:\Users\*\Desktop\
+   - C:\Users\*\AppData\
    - C:\ProgramData\
    - C:\Windows\Temp\
-  Additionally, flag any executable or script found
-  in any directory where executables are not expected,
-  regardless of whether that path is listed above.
+
+   For each file found, apply timestamp correlation —
+   flag anything created or modified within the same
+   window as other attacker activity.
+
+   Additionally, flag any executable or script found
+   in any directory where executables are not expected,
+   regardless of whether that path is listed above.
 
 --------------------------------------------------
 SERVICE AND PROCESS FUNCTIONAL ANALYSIS
