@@ -17,16 +17,14 @@ TeamId process
 WSL
 UAC settings All of these are legitimate processes and are benign.
 
-Authorized Administrators:
-
+Authorized Administrators
 alex
 jordan
 taylor
 chris
 morgan
 
-Authorized Users:
-
+Authorized Users
 jamie
 casey
 riley
