@@ -95,16 +95,18 @@ This windows server is hosting a file uploading webserver through IIS.  Ensure t
 REQUIRED REMEDIATION COVERAGE 
 --------------------------------------------------
 
-You MUST explicitly investigate, remediate vulneratbilites, and state completion for each:
+You MUST explicitly investigate, flag vulneratbilites for remediation, and state completion for each:
 
-1. Identity, access, and remediate
+1. Identity and access
    - Local users and groups
    - Administrator membership
-   - Account status and password strength
+   - Account status and any condition where an account
+     could be accessed or compromised with little or
+     no resistance
 
 2. System configuration and policies
 
-   For each area, identify configurations that would allow
+   For each area, flag configurations that would allow
    an attacker to gain access, hold access, act beyond
    their intended authority, or access the system remotely
    without resistance.
@@ -121,7 +123,7 @@ You MUST explicitly investigate, remediate vulneratbilites, and state completion
 
 4. Security controls
 
-   - Defender - determine whether any path, process, or scope is exempt from inspection.
+   - Defender - determine whether any path, process, or scope is exempt from inspection and flag for remediation.
    - Firewall
 
 5. Execution surfaces
@@ -140,6 +142,9 @@ You MUST explicitly investigate, remediate vulneratbilites, and state completion
    - C:\Users\*\Desktop\
    - C:\ProgramData\
    - C:\Windows\Temp\
+  Additionally, flag any executable or script found
+  in any directory where executables are not expected,
+  regardless of whether that path is listed above.
 
 --------------------------------------------------
 SERVICE AND PROCESS FUNCTIONAL ANALYSIS
