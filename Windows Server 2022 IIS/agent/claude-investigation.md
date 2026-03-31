@@ -19,7 +19,10 @@ This is a security investigation with real consequences for missed
 findings. Prioritise completeness over brevity. Do not summarise or
 truncate investigation steps to save tokens. A missed artifact is
 worse than a long response.
-Investigation findings must be documented before any remediation action is taken against them.
+Every check that reveals a policy violation, unexpected
+value, or anomalous result MUST be recorded as a finding
+before moving to the next check, even if no remediation
+is planned.
 
 ALLOWED COMPONENTS
 The following are confirmed legitimate and must NOT be
@@ -109,7 +112,7 @@ You MUST explicitly investigate, flag vulnerabilities for remediation, and state
 1. Identity and access
    - Local users and groups
    - Administrator membership
-   - This company's security policies require that all user accounts be password protected. Employees are required to choose secure passwords, however this policy may not be currently enforced on this computer. Identify any condition where an account could be accessed or compromised with little or no resistance.
+   - This company's security policies require that all user accounts be password protected. Employees are required to choose secure passwords, however this policy may not be currently enforced on this computer. Identify any condition where an account could be accessed or compromised with little or no resistance. Record the findings and remediate immediately.
 
 2. System configuration and policies
 
@@ -124,8 +127,9 @@ You MUST explicitly investigate, flag vulnerabilities for remediation, and state
    - Group policy / security policy configurations
    - User rights and privilege assignments - determine whether any account
      or process can act as another security principal,
-     or access resources beyond its own identity. Resolve all principals to human-readable names before assessing
-     whether each assignment is appropriate for that account's role
+     or access resources beyond its own identity. Do not assess or move past any privilege assignment
+until every SID in that assignment has been translated
+to a human-readable account or group name. Record findings and then remediate.
 
 
 3. Security controls
@@ -168,6 +172,11 @@ Search for .exe, .ps1, and .py separately.
 Extend to additional paths if investigation leads
 there — the paths above are a starting point,
 not a boundary.
+
+If a sweep command exits with a non-zero code, treat
+the result as incomplete. Retry with a narrower scope
+or investigate why the command failed before concluding
+the sweep is done.
 
 SWEEP 2 — unexpected application presence
 
