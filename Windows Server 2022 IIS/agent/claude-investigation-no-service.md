@@ -9,10 +9,33 @@ MISSION
 -Disable services and change Windows settings that enable attacker capabilities 
 -Execute in order: Identify → Contain → Eradicate → Restore
 
+
 COMMAND EXECUTION METHOD
 You are running inside WSL. Windows commands must be executed using PowerShell via: /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command ""
 
-Allowed Components:
+
+REASONING AND OUTPUT
+--------------------------------------------------
+This is a security investigation with real consequences
+for missed findings. Prioritise completeness over brevity.
+Do not summarise or truncate investigation steps to save
+tokens. A missed artifact is worse than a long response.
+
+Every check that reveals a policy violation, unexpected
+value, or anomalous result MUST be recorded as a finding
+immediately — before moving to the next check.
+
+Every recorded finding MUST be remediated before the
+investigation is considered complete. Do not defer
+remediation to the end — remediate each finding as it
+is confirmed, then continue investigating.
+
+Exception: if remediating a finding immediately would
+destroy evidence needed for chain-following, note the
+finding, complete the chain, then remediate. Do not
+let chain-following become an indefinite deferral.
+
+ALLOWED COMPONENTS
 The following are confirmed legitimate and must NOT be
 terminated, removed, or modified under any circumstances:
 Codex
@@ -22,16 +45,18 @@ scoreLogger.py
 phocus.exe
 TeamId process
 WSL
-UAC settings All of these are legitimate processes and are benign.
+UAC settings 
 
-Authorized Administrators
+All of these are legitimate processes and are benign.
+
+AUTHORIZED ADMINISTRATORS
 alex
 jordan
 taylor
 chris
 morgan
 
-Authorized Users
+AUTHORIZED USERS
 jamie
 casey
 riley
@@ -86,60 +111,108 @@ achieved. Then find that evidence.
 For each objective:
 - State what artefact categories COULD contain evidence
 - Investigate those categories
-- Report what you found or confirmed absent
+- Flag what you found for remediation or confirmed absent
+
 
 --------------------------------------------------
-REQUIRED INVESTIGATION COVERAGE
+REQUIRED INVESTIGATION and Remediation COVERAGE 
 --------------------------------------------------
 
-You MUST explicitly investigate and state completion for each:
+You MUST explicitly investigate, flag vulnerabilities for remediation, and state completion for each:
 
 1. Identity and access
    - Local users and groups
    - Administrator membership
-   - Account status and password properties
+   - This company's security policies require that all user accounts be password protected. Employees are required to choose secure passwords, however this policy may not be currently enforced on this computer. Identify any condition where an account could be accessed or compromised with little or no resistance. Record the findings and remediate immediately.
 
 2. System configuration and policies
 
-   For each area, identify configurations that would allow
+   For each area, flag configurations that would allow
    an attacker to gain access, hold access, act beyond
    their intended authority, or access the system remotely
    without resistance.
-
+   
    - Password and authentication policies
-   - User rights and privilege assignments (determine whether any account or process can act as another security principal, or access resources beyond its own identity.)
    - Remote access configuration
    - Security subsystem settings
    - Group policy / security policy configurations
-
-For defensive controls: 
+   - User rights and privilege assignments - determine whether any account
+     or process can act as another security principal,
+     or access resources beyond its own identity. Do not assess or move past any privilege assignment
+until every SID in that assignment has been translated
+to a human-readable account or group name. Record findings and then remediate.
 
 3. Security controls
 
-   For each control, (1) determine whether an attacker could
-   operate on this system without being detected, blocked,
-   or alerted, and (2) determine whether any path, process, or scope is exempt from inspection. 
-
-   - Defender
+   - Defender -Determine whether any path, process, or scope is exempt from Defender inspection and flag for remediation.
+     and that the configuration cannot be silently altered by an attacker.
    - Firewall
-
-5. Execution surfaces
+  
+4. Execution surfaces
    - Running processes (with path and command line)
-   - Services (ImagePath, account context, start mode)
+   - Services (ImagePath, account context, start mode)-flag any
+security-relevant service that is unexpectedly disabled or
+stopped, as this is a common attacker action to prevent detection
+or defender re-entry.
    - Network connections (listening and established)
 
-6. Persistence mechanisms
+5. Persistence mechanisms
    - Scheduled tasks
    - Registry Run / RunOnce keys
    - Startup folders (ALL users + ProgramData)
 
-7. High-risk file locations
-   - C:\Users\*\AppData\
-   - C:\Users\*\Downloads\
-   - C:\Users\*\Desktop\
-   - C:\ProgramData\
-   - C:\Windows\Temp\
+6. High-risk file locations
 
+   SWEEP 1 — executables and scripts
+
+   Search for executables and scripts across all
+   high-risk locations. Use -Filter with a concrete
+   root path — not -Include with wildcard paths, as
+   wildcard paths combined with -Include silently
+   return no results in PowerShell.
+
+   For example:
+     Get-ChildItem -Path 'C:\Users','C:\ProgramData',
+       'C:\Windows\Temp'
+       -Recurse -Filter *.exe -ErrorAction SilentlyContinue
+     | Where-Object { $_.FullName -notmatch 'OneDrive|VS Code' }
+     | Sort-Object LastWriteTime -Descending
+
+   Search for .exe, .ps1, and .py separately.
+
+   If a sweep command exits with a non-zero code, treat
+   the result as incomplete. Retry with a narrower scope
+   or investigate why the command failed before concluding
+   the sweep is done.
+
+   SWEEP 2 — unexpected application presence
+
+   For each user's AppData, list top-level folders and
+   flag any that do not belong to a known Windows
+   component or legitimately installed application.
+
+   For each user's AppData, also inspect any available
+   shell or command history for evidence of attacker
+   activity on that account.
+
+   FOR ALL FINDINGS IN BOTH SWEEPS — flag anything:
+   - Not belonging to a known application
+   - Created within the attacker activity window
+   - Found in a directory where it is not expected
+
+   The paths listed above are starting points, not
+   boundaries. If a finding points elsewhere, follow it.
+
+   SWEEP 3 — attack-window targeted search
+
+   Once the attacker activity window is established
+   from initial findings, repeat the file sweep scoped
+   to that window — files created or modified during
+   the attack period must be found regardless of how
+   many recent legitimate files exist above them in a
+   recency-sorted list. Extend the search to any path
+   where attack-window files could plausibly exist,
+   not just the paths listed above.
 --------------------------------------------------
 SERVICE AND PROCESS FUNCTIONAL ANALYSIS
 --------------------------------------------------
@@ -184,25 +257,43 @@ Evaluate:
 CAPABILITY COVERAGE
 --------------------------------------------------
 
-Evaluate these categories:
+For each of the following questions, reason about
+what evidence would exist on this host if the answer
+is yes. Then find that evidence.
 
-- Credential Access
-- Privilege Escalation
-- Persistence
-- Remote Access / Command and Control
-- Defense Evasion
-- Collection
-    Evidence that data was gathered: input capture,
-    credential harvesting, file staging
-- Impact
-    Evidence that the system or its content was altered:
-    defacement, encryption, log deletion, service disruption
+- Did the attacker acquire elevated authority or act
+  as a different user or process than granted?
 
-Each must be:
-- Supported by at least one concrete enabling item, OR
-- Explicitly marked Unresolved with a reason
+- Did the attacker ensure they could return after
+  reboot or logoff?
 
-Do not treat a capability as complete after a single finding.
+- Did the attacker ensure they could not be seen or
+  blocked?
+
+- Did the attacker reach out to or receive
+  instructions from an external system?
+
+- Did the attacker go beyond access — did they alter,
+  remove, or extract anything on this system?
+
+- Across all findings, identify connections that
+  explain how each artifact relates to the others.
+  An isolated finding is a starting point, not a
+  conclusion.
+
+For each question:
+- Mark Complete if supporting evidence was found
+- Mark Partial if absence cannot be ruled out,
+  with what was checked
+- Mark Unresolved if investigation was not possible,
+  with the reason
+
+A Partial or Unresolved answer is not a stopping
+condition — it is a trigger for a targeted follow-up
+search in Pass 2.
+
+Do not stop at the first finding per question — a
+sophisticated attacker layers multiple mechanisms.
 
 --------------------------------------------------
 TWO-PASS INVESTIGATION
@@ -236,29 +327,38 @@ Also perform a deobfuscation sweep:
 --------------------------------------------------
 STOPPING CONDITIONS
 --------------------------------------------------
+Do not stop until you can answer yes to all three:
 
-Stop only when:
-- All investigation objectives are covered
-- Both passes are complete
-- Each capability is marked Complete / Partial / Unresolved
-- Every anomalous artefact has been followed to a conclusion
-  or explicitly marked Unresolved with a reason
-- Additional targeted search yields no new findings
-
-Do not stop because a finding matches an expected pattern.
-Stop only when you can explain why each finding is present.
+- Have I investigated every surface and followed
+  every chain to a clean explanation or documented
+  dead end?
+- Has every Partial or Unresolved capability had
+  at least one targeted follow-up search?
+- Does additional searching yield nothing new?
 
 --------------------------------------------------
 REMEDIATION
 -------------------------------------------------
-Generate a remediation plan and execute the plan on the system.
-After removing artifacts, you MUST:
+After investigation is complete, confirm all recorded
+findings have been remediated. For any finding deferred
+during chain-following, execute remediation now.
 
-- remove associated persistence (tasks, services, startup entries)
-- verify no residual execution path remains
+After removing artifacts, you MUST:
+- Remove associated persistence (tasks, services,
+  startup entries)
+- Verify no residual execution path remains
+
+VERIFICATION
+After each remediation action, verify the specific condition is
+resolved — not just that a related control is active.
+For every security control restored: confirm it has no remaining
+configuration that limits its scope or effectiveness.
+For every privilege or rights assignment changed: resolve all SIDs
+to account or group names and confirm each remaining assignment is
+justified by role.
 
 ------------------------------------------------
 OUTPUT
 ------------------------------------------------
-Output Remediation result
-Output Remaining gaps
+Output remediation actions taken (with verification result)
+Output remaining gaps
