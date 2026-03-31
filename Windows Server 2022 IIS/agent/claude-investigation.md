@@ -143,14 +143,14 @@ until every SID in that assignment has been translated
 to a human-readable account or group name. Record findings and then remediate.
 
 3. Critical Service — IIS Web Server       
-   -This Windows system hosts a file upload web application
-   through IIS. Investigate and remediate the IIS
+   -Determine if IIS is present. If IIS is present, the web root is at
+   C:\inetpub\wwwroot. Investigate and remediate the IIS
    configuration and web root for attacker activity
-   and security weaknesses. The web root is located at C:\inetpub\wwwroot.
-
-   -If specific web root files are confirmed tampered
-   or missing, restore with backups in the current
+   and security weaknesses.If specific web root files
+   are confirmed tampered or missing, restore with backups in the current
    user's Documents folder.
+
+   
 4. Security controls
 
    - Defender -Determine whether any path, process, or scope is exempt from Defender inspection and flag for remediation.
