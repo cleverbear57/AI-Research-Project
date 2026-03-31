@@ -333,6 +333,12 @@ Also perform a deobfuscation sweep:
   task definitions, registry values, or scripts: decode it,
   assess it, and record both the encoded and decoded forms.
 
+  As a final step in Pass 2, look back at all paths
+investigated during this session. For any path not
+covered by the initial high-risk file sweeps, determine
+whether additional file-level investigation of that
+path is warranted given what you found there and when
+the attacker was active.
 --------------------------------------------------
 STOPPING CONDITIONS
 --------------------------------------------------
