@@ -148,17 +148,8 @@ to a human-readable account or group name. Record findings and then remediate.
    configuration and web root for attacker activity
    and security weaknesses. The web root is located at C:\inetpub\wwwroot.
 
-   Investigate:
-   - Upload functionality that could accept or has
-     accepted executable content
-   - Script files in unexpected locations or recently
-     modified without a legitimate explanation
-   - IIS configuration that exposes writable directories
-     as web-accessible
-   - Evidence of webshell deployment or defacement
-   - IIS logs for evidence of exploitation
-   If specific web root files are confirmed tampered
-   or missing, verified backups exist in the current
+   -If specific web root files are confirmed tampered
+   or missing, restore with backups in the current
    user's Documents folder.
 4. Security controls
 
