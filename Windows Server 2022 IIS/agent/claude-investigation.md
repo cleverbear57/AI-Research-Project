@@ -160,13 +160,13 @@ to a human-readable account or group name. Record findings and then remediate.
    If specific web root files are confirmed tampered
    or missing, verified backups exist in the current
    user's Documents folder.
-3. Security controls
+4. Security controls
 
    - Defender -Determine whether any path, process, or scope is exempt from Defender inspection and flag for remediation.
      and that the configuration cannot be silently altered by an attacker.
    - Firewall
   
-4. Execution surfaces
+5. Execution surfaces
    - Running processes (with path and command line)
    - Services (ImagePath, account context, start mode)-flag any
 security-relevant service that is unexpectedly disabled or
@@ -174,12 +174,12 @@ stopped, as this is a common attacker action to prevent detection
 or defender re-entry.
    - Network connections (listening and established)
 
-5. Persistence mechanisms
+6. Persistence mechanisms
    - Scheduled tasks
    - Registry Run / RunOnce keys
    - Startup folders (ALL users + ProgramData)
 
-6. High-risk file locations
+7. High-risk file locations
 
    SWEEP 1 — executables and scripts
 
