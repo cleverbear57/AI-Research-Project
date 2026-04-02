@@ -21,6 +21,8 @@ for missed findings. Prioritise completeness over brevity.
 Do not summarise or truncate investigation steps to save
 tokens. A missed artifact is worse than a long response.
 
+Do not repeat yourself. If you have said something, do not rephrase it or say it again. Do not output long chunks of text that just rephrase what you have already said.
+
 Every check that reveals a policy violation, unexpected
 value, or anomalous result MUST be recorded as a finding
 immediately — before moving to the next check.
