@@ -130,8 +130,7 @@ Get-ChildItem -Path 'C:\Users','C:\ProgramData','C:\Windows\Temp' -Recurse -Filt
 Incorrect:
 Get-ChildItem -Path 'C:\**' -Include *.exe -Recurse
 
-Run separate commands for each extension (.exe, .ps1, .py). If a sweep command exits with a non-zero code, treat
-You MUST explicitly investigate, flag vulnerabilities for remediation, and state completion for each:
+Run separate commands for each extension (.exe, .ps1, .py). If a sweep command exits with a non-zero code, treat the result as incomplete and retry with a narrower scope before concluding the sweep is done.
 
 --------------------------------------------------
 Critical Service
